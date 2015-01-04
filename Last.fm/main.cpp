@@ -7,9 +7,16 @@
 //
 
 #include <iostream>
+#include "audioTag.h"
+#include "Last_fm.h"
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+
+
+
+
+int main(int argc, const char * argv[])
+{
+    track_getInfo("Michael Jackson", "Earth Song");
+    
     return 0;
 }

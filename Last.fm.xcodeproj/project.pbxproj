@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		1E5E2F2E1A592AC500C60692 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1E5E2F2D1A592AC500C60692 /* main.cpp */; };
+		1E5E2F4D1A5931CC00C60692 /* socketTool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1E5E2F4B1A5931CC00C60692 /* socketTool.cpp */; };
+		1E5E2F501A5931D500C60692 /* audioTag.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1E5E2F4E1A5931D500C60692 /* audioTag.cpp */; };
+		1E5E2F531A5933A200C60692 /* Last_fm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1E5E2F511A5932E900C60692 /* Last_fm.cpp */; };
+		1E5E2F5C1A5934D600C60692 /* json_reader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1E5E2F581A5934D600C60692 /* json_reader.cpp */; };
+		1E5E2F5D1A5934D600C60692 /* json_value.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1E5E2F591A5934D600C60692 /* json_value.cpp */; };
+		1E5E2F5E1A5934D600C60692 /* json_writer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1E5E2F5B1A5934D600C60692 /* json_writer.cpp */; };
+		1E5E2F611A59410600C60692 /* base64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1E5E2F601A59410600C60692 /* base64.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +32,21 @@
 /* Begin PBXFileReference section */
 		1E5E2F2A1A592AC500C60692 /* Last.fm */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Last.fm; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E5E2F2D1A592AC500C60692 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		1E5E2F4B1A5931CC00C60692 /* socketTool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = socketTool.cpp; path = ../lyricsFetcher/src/socketTool.cpp; sourceTree = "<group>"; };
+		1E5E2F4C1A5931CC00C60692 /* socketTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = socketTool.h; path = ../lyricsFetcher/src/socketTool.h; sourceTree = "<group>"; };
+		1E5E2F4E1A5931D500C60692 /* audioTag.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = audioTag.cpp; path = ../lyricsFetcher/src/audioTag.cpp; sourceTree = "<group>"; };
+		1E5E2F4F1A5931D500C60692 /* audioTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = audioTag.h; path = ../lyricsFetcher/src/audioTag.h; sourceTree = "<group>"; };
+		1E5E2F511A5932E900C60692 /* Last_fm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Last_fm.cpp; sourceTree = "<group>"; };
+		1E5E2F521A5932E900C60692 /* Last_fm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Last_fm.h; sourceTree = "<group>"; };
+		1E5E2F551A5934D600C60692 /* json_batchallocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = json_batchallocator.h; sourceTree = "<group>"; };
+		1E5E2F561A5934D600C60692 /* json_internalarray.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = json_internalarray.inl; sourceTree = "<group>"; };
+		1E5E2F571A5934D600C60692 /* json_internalmap.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = json_internalmap.inl; sourceTree = "<group>"; };
+		1E5E2F581A5934D600C60692 /* json_reader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json_reader.cpp; sourceTree = "<group>"; };
+		1E5E2F591A5934D600C60692 /* json_value.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json_value.cpp; sourceTree = "<group>"; };
+		1E5E2F5A1A5934D600C60692 /* json_valueiterator.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = json_valueiterator.inl; sourceTree = "<group>"; };
+		1E5E2F5B1A5934D600C60692 /* json_writer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json_writer.cpp; sourceTree = "<group>"; };
+		1E5E2F5F1A5940B900C60692 /* base64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = base64.h; sourceTree = "<group>"; };
+		1E5E2F601A59410600C60692 /* base64.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = base64.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +63,8 @@
 		1E5E2F211A592AC500C60692 = {
 			isa = PBXGroup;
 			children = (
+				1E5E2F541A5934D600C60692 /* lib_json */,
+				1E5E2F4A1A5931C000C60692 /* imports */,
 				1E5E2F2C1A592AC500C60692 /* Last.fm */,
 				1E5E2F2B1A592AC500C60692 /* Products */,
 			);
@@ -58,8 +82,37 @@
 			isa = PBXGroup;
 			children = (
 				1E5E2F2D1A592AC500C60692 /* main.cpp */,
+				1E5E2F521A5932E900C60692 /* Last_fm.h */,
+				1E5E2F511A5932E900C60692 /* Last_fm.cpp */,
+				1E5E2F5F1A5940B900C60692 /* base64.h */,
+				1E5E2F601A59410600C60692 /* base64.cpp */,
 			);
 			path = Last.fm;
+			sourceTree = "<group>";
+		};
+		1E5E2F4A1A5931C000C60692 /* imports */ = {
+			isa = PBXGroup;
+			children = (
+				1E5E2F4C1A5931CC00C60692 /* socketTool.h */,
+				1E5E2F4B1A5931CC00C60692 /* socketTool.cpp */,
+				1E5E2F4F1A5931D500C60692 /* audioTag.h */,
+				1E5E2F4E1A5931D500C60692 /* audioTag.cpp */,
+			);
+			name = imports;
+			sourceTree = "<group>";
+		};
+		1E5E2F541A5934D600C60692 /* lib_json */ = {
+			isa = PBXGroup;
+			children = (
+				1E5E2F551A5934D600C60692 /* json_batchallocator.h */,
+				1E5E2F561A5934D600C60692 /* json_internalarray.inl */,
+				1E5E2F571A5934D600C60692 /* json_internalmap.inl */,
+				1E5E2F581A5934D600C60692 /* json_reader.cpp */,
+				1E5E2F591A5934D600C60692 /* json_value.cpp */,
+				1E5E2F5A1A5934D600C60692 /* json_valueiterator.inl */,
+				1E5E2F5B1A5934D600C60692 /* json_writer.cpp */,
+			);
+			path = lib_json;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,7 +171,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E5E2F5C1A5934D600C60692 /* json_reader.cpp in Sources */,
+				1E5E2F5D1A5934D600C60692 /* json_value.cpp in Sources */,
+				1E5E2F531A5933A200C60692 /* Last_fm.cpp in Sources */,
+				1E5E2F4D1A5931CC00C60692 /* socketTool.cpp in Sources */,
+				1E5E2F501A5931D500C60692 /* audioTag.cpp in Sources */,
 				1E5E2F2E1A592AC500C60692 /* main.cpp in Sources */,
+				1E5E2F611A59410600C60692 /* base64.cpp in Sources */,
+				1E5E2F5E1A5934D600C60692 /* json_writer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,6 +262,14 @@
 		1E5E2F321A592AC500C60692 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/include,
+					"\"$(SRCROOT)/include\"",
+				);
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				OTHER_LDFLAGS = "-ltag";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -209,6 +277,14 @@
 		1E5E2F331A592AC500C60692 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/include,
+					"\"$(SRCROOT)/include\"",
+				);
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				OTHER_LDFLAGS = "-ltag";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -232,6 +308,7 @@
 				1E5E2F331A592AC500C60692 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
