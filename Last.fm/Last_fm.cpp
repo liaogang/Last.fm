@@ -12,7 +12,9 @@
 #include <stdarg.h> //va_list
 #include "base64.h"
 #include <assert.h>
+#include <iostream>
 
+using namespace std;
 /**
  Last.fm
 
@@ -140,17 +142,31 @@ void track_getInfo(char *artist , char *track)
     paramPair m("method","Track.getInfo");
     ;
     
-   const unsigned char artist2[] = "michael jackson";
+    unsigned char *buffer1[125]={0};
+    unsigned int i = 0;
+    for (; i < strlen(artist); i++) {
+        unsigned char a = artist[i];
+        sprintf((char*)buffer1,"%X",a);
+    }
+
+    printf("\n");
     
-    std::string artist22 =  base64_encode(artist2, strlen((char*)artist2));
+    unsigned char *buffer2[125]={0};
+    unsigned int i = 0;
+    for (; i < strlen(artist); i++) {
+        unsigned char a = artist[i];
+        sprintf((char*)buffer2,"%X",a);
+    }
     
-    paramPair a("artist","Michael%20Jackson"/*(char*)artist22.c_str()*/);
+    
+    
+    paramPair a("artist",(char*)buffer1/*(char*)artist22.c_str()*/);
     
    const unsigned char title2[] =   "earch song";
     
-    std::string title22= base64_encode( title2, strlen((char*)title2)) ;
+    std::string title22= base64_encode( (unsigned char*)track, strlen((char*)track)) ;
     
-    paramPair t("track","Earth%20Song"/*(char*)title22.c_str()*/ );
+    paramPair t("track",(char*)buffer2  );
     
     unsigned char *buffer = lastFmSendRequestWithoutAuth(3,&m,&a,&t);
     

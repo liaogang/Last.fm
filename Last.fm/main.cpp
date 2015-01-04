@@ -16,7 +16,7 @@
 
 int main(int argc, const char * argv[])
 {
-    track_getInfo("Michael Jackson", "Earth Song");
+    track_getInfo("陈洁仪", "Earth Song");
     
     return 0;
 }
