@@ -6,10 +6,9 @@
 //  Copyright (c) 2015年 liaogang. All rights reserved.
 //
 
-#ifndef __Last_fm__Last_fm__
-#define __Last_fm__Last_fm__
+#ifndef __Last_fm__Last_fm_api__
+#define __Last_fm__Last_fm_api__
 
-#include <stdio.h>
 #include <string>
 #include <json/json.h>
 #include "socketTool.h"
@@ -222,33 +221,5 @@ struct LFTrack:public LFObject
 };
 
 
-/**
- Get the metadata for an artist. Includes biography, truncated at 300 characters.
- */
-void artist_getInfo(string &artist);
 
-
-/**
- Get the metadata for a track on Last.fm using the artist/track name or a musicbrainz id.
- */
-void track_getInfo(string &artist , string & track);
-
-
-
-
-bool auth_getToken( string &token );
-
-void openWebInstance(const string &token);
-
-bool auth_getSession(string &sessionKey,string &userName);
-
-
-
-
-
-
-
-string utf8code(string &str);
-
-
-#endif /* defined(__Last_fm__Last_fm__) */
+#endif
