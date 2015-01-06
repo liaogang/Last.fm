@@ -28,20 +28,18 @@ void artist_getInfo(string &artist);
 void track_getInfo(string &artist , string & track);
 
 
-
+// auth step 1
 bool auth_getToken( string &token );
-
-
+// auth step 2
 void openWebInstance(const string &token);
 
-
+// auth step 3
 const int sessionKeyLength = 32;
-
-
 bool auth_getSession(string &token,string &sessionKey,string &userName);
 
 
-string utf8code(string &str);
+bool track_love(string &sessionKey, string &artist , string & track );
+
 
 
 #endif /* defined(__Last_fm__Last_fm__) */

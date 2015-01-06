@@ -15,8 +15,8 @@
 
 int main(int argc, const char * argv[])
 {
-    string artist = "陈洁仪";
-    string track = "";
+    string artist = "Michael";
+    string track = "Earth";
     
     //track_getInfo( artist, track );
     
@@ -39,6 +39,16 @@ int main(int argc, const char * argv[])
     }
     else
         cout<<"not connected."<<endl;
+    
+    
+    if( track_love( user.sessionKey, artist, track) )
+    {
+        cout<<"user: "<<user.name<<" loved a track."<<endl;
+    }
+    else
+        cout<<"user: "<<user.name<<" loved a track failed!"<<endl;
+    
+    
     
     return 0;
 }

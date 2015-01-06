@@ -17,48 +17,15 @@
 
 using namespace std;
 
-string utf8code(string &str)
-{
-    unsigned char buffer2[125]={0};
-    
-    size_t length = str.length();
-    int ii=0;
-    for ( size_t i = 0; i < length; i++)
-    {
-        unsigned char a = str[i];
-        
-        if (isalpha(a))
-        {
-            buffer2[ii++]=a;
-        }
-        else
-        {
-            buffer2[ii++]='%';
-            sprintf((char*)buffer2+ii,"%X",a);
-            ii+=2;
-        }
-    }
-    
-    return string((const char*)buffer2,(size_t)strlen((const char*)buffer2));
-}
 
 
 
 
 
 
-/**
- Last.fm
 
- 
- test
- player
- API Key: 6ef0a182fcb172b557c0ca096594f288
- Secret: is 3b1a4e1e970ed3a30c28cd65bb88579c
- 
- http://ws.audioscrobbler.com/2.0/?api_key=6ef0a182fcb172b557c0ca096594f288&country=&lang=zh&method=Track.getInfo&artist=Michael%20Jackson&track=Earth%20Song&format=json
- 
- */
+
+
 
 const char lastFmPath[]="/2.0/";
 const char lastFmHost[] = "ws.audioscrobbler.com" ;
@@ -91,103 +58,8 @@ bool cmp(paramPair a,paramPair b)
     return ret;
 }
 
-/** return server's response content if have. else nullptr is returned.
- */
-MemBuffer* lastFmSendRequest(vector<paramPair> arrParamPairs, httpMethod  method , bool mkMd5, bool acceptGzipEncoding , bool useJsonFormat )
-{
-    size_t numParamPairs = arrParamPairs.size();
-    
-    assert(numParamPairs>=1);
-    
-    string strParams;
-   
-    arrParamPairs.insert(arrParamPairs.begin(), {"api_key",lastFmApiKey});
-    numParamPairs++;
-    
-    
-//    if (useJsonFormat)
-//    {
-//        arrParamPairs.push_back( {"format","json"} );
-//        numParamPairs++;
-//    }
-    
-    sort(arrParamPairs.begin(), arrParamPairs.end(), cmp);
-    
-    
-    if (mkMd5)
-    {
-        string strMD5;
-        //
-        for( int i = 0; i< numParamPairs; i++)
-        {
-            paramPair pPP = arrParamPairs[i];
-            
-            strMD5+=pPP.param;
-            strMD5+=pPP.value;
-        }
-        
-        strMD5+= lastFmSecret;
-        
-        arrParamPairs.push_back({"api_sig",md5(strMD5)});
-        numParamPairs++;
-        sort(arrParamPairs.begin(), arrParamPairs.end(), cmp);
-    }
-  
-    
-    arrParamPairs.push_back( {"format","json"} );
-    numParamPairs++;
-    sort(arrParamPairs.begin(), arrParamPairs.end(), cmp);
-    
-    for( int i = 0; i< numParamPairs; i++)
-    {
-        paramPair pPP = arrParamPairs[i];
-        
-        if(i!=0)
-            strParams+='&';
-        
-        strParams+=pPP.param;
-        strParams+='=';
-        strParams+=pPP.value;
-    }
-    
 
-    cout<<strParams<<endl;
-    
-    const int senderHeaderLenMax = 2048;
-    
- 
-    unsigned char senderHeader[senderHeaderLenMax];
-const char senderHeaderFormatter[] =
-"%s %s?%s HTTP/1.1\r\n\
-Connection: Keep-Alive\r\n\
-%s\
-Accept-Language: zh-CN,en,*\r\n\
-Host: %s\r\n\
-\r\n";
-    
-    const char acceptEncoding[] = "Accept-Encoding: gzip\r\n";
-    
-    sprintf( (char*) senderHeader, senderHeaderFormatter ,arrHttpMethod[method]  , lastFmPath , strParams.c_str() , acceptGzipEncoding?acceptEncoding:"" ,  lastFmHost );
-    
-    int senderHeaderLen = strlen((char*)senderHeader);
-    
-    printf("%s\n",senderHeader);
-    
-    int socketClient;
-    if(CreateTcpSocketClient(lastFmHost  , &socketClient) )
-    {
-        if(  sendDataToSocket(socketClient, senderHeader, senderHeaderLen) == senderHeaderLen )
-        {
-            MemBuffer *socketBuf = recvSocketData(socketClient);
-            closesocket(socketClient);
-            return socketBuf;
-        }
-        
-    }
-    
-    return nullptr;
-}
-
+MemBuffer* lastFmSendRequest(vector<paramPair> arrParamPairs, httpMethod  method , bool mkMd5, bool acceptGzipEncoding , bool useJsonFormat );
 
 
 void artist_getInfo(string &artist)
@@ -214,7 +86,7 @@ void artist_getInfo(string &artist)
     (
      {
          {"method","artist.getInfo"},
-         {"artist", utf8code(artist)},
+         {"artist", artist},
          {"autocorrect","1"}
      }
      );
@@ -270,11 +142,11 @@ void track_getInfo(string &artist , string & track)
     vector<paramPair> arrParamPair
     (
      {
-        {"artist",utf8code( artist)},
+        {"artist", artist},
         {"autocorrect","1"},
         {"method","track.getInfo"},
         {"lang",lastFmLang},
-        {"track", utf8code(track)}
+        {"track", track}
      }
      );
     
@@ -339,7 +211,6 @@ void openWebInstance(const string &token)
     url+=token;
     url+="\"";
     
-    // open "..&.."
     system(url.c_str());
 }
 
@@ -384,13 +255,16 @@ bool auth_getSession(string &token,string &sessionKey,string &userName)
 }
 
 bool track_love(string &sessionKey, string &artist , string & track )
-{    vector<paramPair> arrParamPair
+{
+    bool result = false;
+    
+    vector<paramPair> arrParamPair
     (
      {
-        {"artist", utf8code(artist)},
+        {"artist", artist},
         {"method","track.love"},
         {"sk", sessionKey},
-        {"track", utf8code(track) }
+        {"track", track }
      }
      );
     
@@ -405,16 +279,128 @@ bool track_love(string &sessionKey, string &artist , string & track )
         Json::Value root;
         reader.parse((const char*)buffer->buffer, (const char*)buffer->buffer+buffer->length , root);
         
- 
+        if(root["status"].asString() == "ok")
+        {
+            result = true;
+        }
         
         deleteMemBuffer(buffer);
+    }
+    
+    return result;
+}
+
+string utf8code(string &str)
+{
+    unsigned char buffer2[125]={0};
+    
+    size_t length = str.length();
+    int ii=0;
+    for ( size_t i = 0; i < length; i++)
+    {
+        unsigned char a = str[i];
         
-        return true;
+        if (isalnum(a) || ispunct(a) )
+        {
+            buffer2[ii++]=a;
+        }
+        else
+        {
+            buffer2[ii++]='%';
+            sprintf((char*)buffer2+ii,"%X",a);
+            ii+=2;
+        }
+    }
+    
+    return string((const char*)buffer2,(size_t)strlen((const char*)buffer2));
+}
+
+/** return server's response content if have. else nullptr is returned.
+ */
+MemBuffer* lastFmSendRequest(vector<paramPair> arrParamPairs, httpMethod  method , bool mkMd5, bool acceptGzipEncoding , bool useJsonFormat )
+{
+    size_t numParamPairs = arrParamPairs.size();
+    
+    assert(numParamPairs>=1);
+    
+    string strParams;
+    
+    arrParamPairs.insert(arrParamPairs.begin(), {"api_key",lastFmApiKey});
+    numParamPairs++;
+    
+    sort(arrParamPairs.begin(), arrParamPairs.end(), cmp);
+    
+    if (mkMd5)
+    {
+        string strMD5;
+        //
+        for( int i = 0; i< numParamPairs; i++)
+        {
+            paramPair pPP = arrParamPairs[i];
+            
+            strMD5+=pPP.param;
+            strMD5+=pPP.value;
+        }
+        
+        strMD5+= lastFmSecret;
+        
+        arrParamPairs.push_back({"api_sig",md5(strMD5)});
+        numParamPairs++;
+        sort(arrParamPairs.begin(), arrParamPairs.end(), cmp);
     }
     
     
-    return false;
+    arrParamPairs.push_back( {"format","json"} );
+    numParamPairs++;
+    sort(arrParamPairs.begin(), arrParamPairs.end(), cmp);
+    
+    
 
+    for( int i = 0; i< numParamPairs; i++)
+    {
+        paramPair pPP = arrParamPairs[i];
+        
+        if(i!=0)
+            strParams+='&';
+        
+        strParams+=pPP.param;
+        strParams+='=';
+        /// convert param value from utf8 to utf8 code (eaaf --> %ea%af)
+        strParams+=utf8code( pPP.value );
+//        strParams+= pPP.value ;
+    }
+    
+    
+    const int senderHeaderLenMax = 2048;
+    
+    unsigned char senderHeader[senderHeaderLenMax];
+const char senderHeaderFormatter[] =
+"%s %s?%s HTTP/1.1\r\n\
+Connection: Keep-Alive\r\n\
+%s\
+Accept-Language: zh-CN,en,*\r\n\
+Host: %s\r\n\
+\r\n";
+    
+    const char acceptEncoding[] = "Accept-Encoding: gzip\r\n";
+    
+    sprintf( (char*) senderHeader, senderHeaderFormatter ,arrHttpMethod[method]  , lastFmPath , strParams.c_str() , acceptGzipEncoding?acceptEncoding:"" ,  lastFmHost );
+    
+    int senderHeaderLen = strlen((char*)senderHeader);
+    
+    printf("%s\n",senderHeader);
+    
+    int socketClient;
+    if(CreateTcpSocketClient(lastFmHost  , &socketClient) )
+    {
+        if(  sendDataToSocket(socketClient, senderHeader, senderHeaderLen) == senderHeaderLen )
+        {
+            MemBuffer *socketBuf = recvSocketData(socketClient);
+            closesocket(socketClient);
+            return socketBuf;
+        }
+        
+    }
+    
+    return nullptr;
 }
-
-
