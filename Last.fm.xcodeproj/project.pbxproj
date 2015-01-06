@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1E188B3F1A5AA060004AC3FB /* md5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1E188B3D1A5AA060004AC3FB /* md5.cpp */; };
-		1E188B421A5AA072004AC3FB /* gzstream.C in Sources */ = {isa = PBXBuildFile; fileRef = 1E188B401A5AA072004AC3FB /* gzstream.C */; };
 		1E188B451A5AA0CF004AC3FB /* Last_fm_api.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1E188B431A5AA0CF004AC3FB /* Last_fm_api.cpp */; };
+		1E188B471A5AA30D004AC3FB /* gzstream.C in Sources */ = {isa = PBXBuildFile; fileRef = 1E188B461A5AA30D004AC3FB /* gzstream.C */; };
 		1E5E2F2E1A592AC500C60692 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1E5E2F2D1A592AC500C60692 /* main.cpp */; };
 		1E5E2F4D1A5931CC00C60692 /* socketTool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1E5E2F4B1A5931CC00C60692 /* socketTool.cpp */; };
 		1E5E2F501A5931D500C60692 /* audioTag.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1E5E2F4E1A5931D500C60692 /* audioTag.cpp */; };
@@ -34,10 +34,10 @@
 /* Begin PBXFileReference section */
 		1E188B3D1A5AA060004AC3FB /* md5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = md5.cpp; sourceTree = "<group>"; };
 		1E188B3E1A5AA060004AC3FB /* md5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = md5.h; sourceTree = "<group>"; };
-		1E188B401A5AA072004AC3FB /* gzstream.C */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gzstream.C; sourceTree = "<group>"; };
 		1E188B411A5AA072004AC3FB /* gzstream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gzstream.h; sourceTree = "<group>"; };
 		1E188B431A5AA0CF004AC3FB /* Last_fm_api.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Last_fm_api.cpp; sourceTree = "<group>"; };
 		1E188B441A5AA0CF004AC3FB /* Last_fm_api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Last_fm_api.h; sourceTree = "<group>"; };
+		1E188B461A5AA30D004AC3FB /* gzstream.C */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gzstream.C; sourceTree = "<group>"; };
 		1E5E2F2A1A592AC500C60692 /* Last.fm */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Last.fm; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E5E2F2D1A592AC500C60692 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		1E5E2F4B1A5931CC00C60692 /* socketTool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = socketTool.cpp; path = ../lyricsFetcher/src/socketTool.cpp; sourceTree = "<group>"; };
@@ -92,8 +92,8 @@
 				1E5E2F511A5932E900C60692 /* Last_fm.cpp */,
 				1E188B441A5AA0CF004AC3FB /* Last_fm_api.h */,
 				1E188B431A5AA0CF004AC3FB /* Last_fm_api.cpp */,
-				1E188B401A5AA072004AC3FB /* gzstream.C */,
 				1E188B411A5AA072004AC3FB /* gzstream.h */,
+				1E188B461A5AA30D004AC3FB /* gzstream.C */,
 				1E188B3D1A5AA060004AC3FB /* md5.cpp */,
 				1E188B3E1A5AA060004AC3FB /* md5.h */,
 			);
@@ -184,12 +184,12 @@
 				1E5E2F5C1A5934D600C60692 /* json_reader.cpp in Sources */,
 				1E5E2F5D1A5934D600C60692 /* json_value.cpp in Sources */,
 				1E5E2F531A5933A200C60692 /* Last_fm.cpp in Sources */,
-				1E188B421A5AA072004AC3FB /* gzstream.C in Sources */,
 				1E188B3F1A5AA060004AC3FB /* md5.cpp in Sources */,
 				1E5E2F4D1A5931CC00C60692 /* socketTool.cpp in Sources */,
 				1E5E2F501A5931D500C60692 /* audioTag.cpp in Sources */,
 				1E5E2F2E1A592AC500C60692 /* main.cpp in Sources */,
 				1E5E2F5E1A5934D600C60692 /* json_writer.cpp in Sources */,
+				1E188B471A5AA30D004AC3FB /* gzstream.C in Sources */,
 				1E188B451A5AA0CF004AC3FB /* Last_fm_api.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

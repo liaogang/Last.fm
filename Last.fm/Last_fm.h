@@ -222,4 +222,15 @@ struct LFTrack:public LFObject
 
 
 
+
+
+class LFUser
+{
+public:
+    string name;
+    string sessionKey;
+};
+
+
+
 #endif

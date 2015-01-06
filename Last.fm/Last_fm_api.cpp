@@ -76,9 +76,16 @@ struct paramPair
     }
 };
 
+enum httpMethod
+{
+    httpMethod_post,
+    httpMethod_get
+};
+
+const char *arrHttpMethod[] = {"POST","GET"};
 
 /// return server's response content if have. else nullptr is returned;
-MemBuffer* lastFmSendRequestWithoutAuth(bool mkMd5, paramPair arrParamPairs[] , int numParamPairs)
+MemBuffer* lastFmSendRequest( httpMethod  method, bool mkMd5, paramPair arrParamPairs[] , int numParamPairs)
 {
     assert(numParamPairs>=1);
     
@@ -123,7 +130,7 @@ MemBuffer* lastFmSendRequestWithoutAuth(bool mkMd5, paramPair arrParamPairs[] , 
 
     unsigned char senderHeader[senderHeaderLenMax];
 const char senderHeaderFormatter[] =
-"GET %s?%s HTTP/1.1\r\n\
+"%s %s?%s HTTP/1.1\r\n\
 Connection: Keep-Alive\r\n\
 Accept-Encoding: gzip\r\n\
 Accept-Language: zh-CN,en,*\r\n\
@@ -131,7 +138,7 @@ Host: %s\r\n\
 \r\n";
     
     
-    sprintf( (char*) senderHeader, senderHeaderFormatter , lastFmPath , strParams , lastFmHost );
+    sprintf( (char*) senderHeader, senderHeaderFormatter ,arrHttpMethod[method]  , lastFmPath , strParams , lastFmHost );
     
     int senderHeaderLen = strlen((char*)senderHeader);
     
@@ -172,11 +179,7 @@ void artist_getInfo(string &artist)
     
     return;
     /////////////////////////////////////////
-    /*
-    paramPair m("method","artist.getInfo");
-    paramPair a("artist", utf8code(artist));
-    paramPair at("autocorrect","1");
-    */
+
     paramPair arrParamPair[] =
     {
         {"method","artist.getInfo"},
@@ -186,7 +189,7 @@ void artist_getInfo(string &artist)
     
     const int arrLen=sizeof(arrParamPair)/sizeof(arrParamPair[0]);
     
-    MemBuffer *buffer = lastFmSendRequestWithoutAuth(false, arrParamPair , arrLen);
+    MemBuffer *buffer = lastFmSendRequest(httpMethod_get ,false, arrParamPair , arrLen);
     
     if (buffer)
     {
@@ -245,7 +248,7 @@ void track_getInfo(string &artist , string & track)
     
     const int arrLen=sizeof(arrParamPair)/sizeof(arrParamPair[0]);
     
-    MemBuffer *buffer = lastFmSendRequestWithoutAuth(false, arrParamPair ,arrLen);
+    MemBuffer *buffer = lastFmSendRequest( httpMethod_get ,false, arrParamPair ,arrLen);
     
     if (buffer)
     {
@@ -272,7 +275,7 @@ bool auth_getToken( string &token )
     
     const int arrLen=sizeof(arrParamPair)/sizeof(arrParamPair[0]);
     
-    MemBuffer *buffer = lastFmSendRequestWithoutAuth(true, arrParamPair ,arrLen);
+    MemBuffer *buffer = lastFmSendRequest( httpMethod_get ,true, arrParamPair ,arrLen);
     
     if (buffer)
     {
@@ -317,7 +320,7 @@ bool auth_getSession(string &sessionKey,string &userName)
     
     const int arrLen=sizeof(arrParamPair)/sizeof(arrParamPair[0]);
     
-    MemBuffer *buffer = lastFmSendRequestWithoutAuth(true, arrParamPair ,arrLen);
+    MemBuffer *buffer = lastFmSendRequest(httpMethod_get , true, arrParamPair ,arrLen);
     
     if (buffer)
     {
@@ -343,3 +346,40 @@ bool auth_getSession(string &sessionKey,string &userName)
     
     return false;
 }
+
+bool track_love(string &sessionKey, string &artist , string & track )
+{
+    paramPair arrParamPair[] =
+    {
+        {"method","track.love"},
+        {"artist", utf8code(artist)},
+        {"track", utf8code(track) },
+        {"sk", sessionKey}
+    };
+    
+    const int arrLen=sizeof(arrParamPair)/sizeof(arrParamPair[0]);
+    
+    MemBuffer *buffer = lastFmSendRequest(httpMethod_post ,true , arrParamPair ,arrLen);
+    
+    if (buffer)
+    {
+        printf("%s\n",buffer->buffer);
+        
+        //parse it by json.
+        Json::Reader reader;
+        Json::Value root;
+        reader.parse((const char*)buffer->buffer, (const char*)buffer->buffer+buffer->length , root);
+        
+ 
+        
+        deleteMemBuffer(buffer);
+        
+        return true;
+    }
+    
+    
+    return false;
+
+}
+
+
