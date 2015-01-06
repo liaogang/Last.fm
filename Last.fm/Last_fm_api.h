@@ -29,13 +29,16 @@ void track_getInfo(string &artist , string & track);
 
 
 
-
 bool auth_getToken( string &token );
+
 
 void openWebInstance(const string &token);
 
-bool auth_getSession(string &sessionKey,string &userName);
 
+const int sessionKeyLength = 32;
+
+
+bool auth_getSession(string &token,string &sessionKey,string &userName);
 
 
 string utf8code(string &str);

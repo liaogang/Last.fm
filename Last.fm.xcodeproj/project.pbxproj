@@ -17,6 +17,7 @@
 		1E5E2F5C1A5934D600C60692 /* json_reader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1E5E2F581A5934D600C60692 /* json_reader.cpp */; };
 		1E5E2F5D1A5934D600C60692 /* json_value.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1E5E2F591A5934D600C60692 /* json_value.cpp */; };
 		1E5E2F5E1A5934D600C60692 /* json_writer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1E5E2F5B1A5934D600C60692 /* json_writer.cpp */; };
+		1EC775221A5B951100E5BD3F /* Last_fm_user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1EC775201A5B951100E5BD3F /* Last_fm_user.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -53,6 +54,8 @@
 		1E5E2F591A5934D600C60692 /* json_value.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json_value.cpp; sourceTree = "<group>"; };
 		1E5E2F5A1A5934D600C60692 /* json_valueiterator.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = json_valueiterator.inl; sourceTree = "<group>"; };
 		1E5E2F5B1A5934D600C60692 /* json_writer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json_writer.cpp; sourceTree = "<group>"; };
+		1EC775201A5B951100E5BD3F /* Last_fm_user.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Last_fm_user.cpp; sourceTree = "<group>"; };
+		1EC775211A5B951100E5BD3F /* Last_fm_user.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Last_fm_user.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +93,8 @@
 				1E5E2F2D1A592AC500C60692 /* main.cpp */,
 				1E5E2F521A5932E900C60692 /* Last_fm.h */,
 				1E5E2F511A5932E900C60692 /* Last_fm.cpp */,
+				1EC775211A5B951100E5BD3F /* Last_fm_user.h */,
+				1EC775201A5B951100E5BD3F /* Last_fm_user.cpp */,
 				1E188B441A5AA0CF004AC3FB /* Last_fm_api.h */,
 				1E188B431A5AA0CF004AC3FB /* Last_fm_api.cpp */,
 				1E188B411A5AA072004AC3FB /* gzstream.h */,
@@ -186,6 +191,7 @@
 				1E5E2F531A5933A200C60692 /* Last_fm.cpp in Sources */,
 				1E188B3F1A5AA060004AC3FB /* md5.cpp in Sources */,
 				1E5E2F4D1A5931CC00C60692 /* socketTool.cpp in Sources */,
+				1EC775221A5B951100E5BD3F /* Last_fm_user.cpp in Sources */,
 				1E5E2F501A5931D500C60692 /* audioTag.cpp in Sources */,
 				1E5E2F2E1A592AC500C60692 /* main.cpp in Sources */,
 				1E5E2F5E1A5934D600C60692 /* json_writer.cpp in Sources */,

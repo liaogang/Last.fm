@@ -6,8 +6,8 @@
 //  Copyright (c) 2015年 liaogang. All rights reserved.
 //
 
-#ifndef __Last_fm__Last_fm_api__
-#define __Last_fm__Last_fm_api__
+#ifndef __Last_fm__Last_fm___
+#define __Last_fm__Last_fm___
 
 #include <string>
 #include <json/json.h>
@@ -224,12 +224,7 @@ struct LFTrack:public LFObject
 
 
 
-class LFUser
-{
-public:
-    string name;
-    string sessionKey;
-};
+
 
 
 
