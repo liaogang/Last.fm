@@ -293,6 +293,97 @@ bool track_love(string &sessionKey, string &artist , string & track )
     return result;
 }
 
+
+
+bool track_updateNowPlaying(string &sessionKey, string &artist,string &track)
+{
+    bool result = false;
+    
+    vector<paramPair> arrParamPair
+    (
+     {
+         {"artist", artist},
+         {"method","track.updateNowPlaying"},
+         {"sk", sessionKey},
+         {"track", track }
+     }
+     );
+    
+    MemBuffer *buffer = lastFmSendRequest(arrParamPair ,httpMethod_post ,true , false , true);
+    
+    if (buffer)
+    {
+        printf("%s\n",buffer->buffer);
+        
+        //parse it by json.
+//        Json::Reader reader;
+//        Json::Value root;
+//        reader.parse((const char*)buffer->buffer, (const char*)buffer->buffer+buffer->length , root);
+//        
+//        if(root["status"].asString() == "ok")
+//        {
+//            result = true;
+//        }
+        
+        result = true;
+        deleteMemBuffer(buffer);
+    }
+    
+    
+    return result;
+}
+
+
+bool track_scrobble(string &sessionKey, vector<string> &artists,vector<string> &tracks,vector<string> timestamps)
+{
+    bool result = false;
+    
+    
+    time_t t;
+    time(&t);
+    
+    char tmp[40]={0};
+    sprintf(tmp, "%ld",t);
+    
+    
+    vector<paramPair> arrParamPair
+    ({
+         {"artist", artists[0]},
+         {"method","track.scrobble"},
+         {"sk", sessionKey},
+         {"timestamp", tmp },
+         {"track", tracks[0] }
+     });
+
+    
+    
+    MemBuffer *buffer = lastFmSendRequest(arrParamPair ,httpMethod_post ,true , false , true);
+    
+    if (buffer)
+    {
+        printf("%s\n",buffer->buffer);
+        
+        //parse it by json.
+        //        Json::Reader reader;
+        //        Json::Value root;
+        //        reader.parse((const char*)buffer->buffer, (const char*)buffer->buffer+buffer->length , root);
+        //
+        //        if(root["status"].asString() == "ok")
+        //        {
+        //            result = true;
+        //        }
+        
+        result = true;
+        deleteMemBuffer(buffer);
+    }
+    
+    
+    return result;
+}
+
+
+
+
 string utf8code(string &str)
 {
     unsigned char buffer2[125]={0};

@@ -42,5 +42,10 @@ bool auth_getSession(string &token,string &sessionKey,string &userName);
 bool track_love(string &sessionKey, string &artist , string & track );
 
 
+bool track_updateNowPlaying(string &sessionKey, string &artist,string &track);
+
+
+bool track_scrobble(string &sessionKey, vector<string> &artists,vector<string> &tracks,vector<string> timestamps);
+
 
 #endif /* defined(__Last_fm__Last_fm__) */

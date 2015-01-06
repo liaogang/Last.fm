@@ -11,28 +11,28 @@
 #include "Last_fm_user.h"
 #include "Last_fm_api.h"
 
-
+#include <time.h>
 
 int main(int argc, const char * argv[])
 {
-    string artist = "Michael";
-    string track = "Earth";
+    string artist = "Michael Jackson";
+    string track = "Earth Song";
     
     //track_getInfo( artist, track );
     
     
     
     
-    
+    /*
     string artist2 = "陈洁仪";
     LFArtist lfArtist ;
     if(artist_getInfo( artist2 ,lfArtist) )
     {
         cout<<lfArtist.name<<endl;
     }
+    */
     
     
-    /*
     LFUser user;
     if(auth(user) )
     {
@@ -41,7 +41,28 @@ int main(int argc, const char * argv[])
     else
         cout<<"not connected."<<endl;
     
+    vector<string> artists ({artist});
+        vector<string> tracks ({track});
+        vector<string> times ({"2015:01:08:02"});
     
+    time_t t;
+    time(&t);
+    
+    if (track_scrobble(user.sessionKey, artists , tracks , times))
+        cout<<"ok"<<endl;
+    else
+        cout<<"error"<<endl;
+    
+    /*
+    if(track_updateNowPlaying(user.sessionKey, artist, track) )
+        cout<<"ok"<<endl;
+    else
+        cout<<"error"<<endl;
+    */
+    
+    
+    
+    /*
     if( track_love( user.sessionKey, artist, track) )
     {
         cout<<"user: "<<user.name<<" loved a track."<<endl;
