@@ -13,13 +13,14 @@
 #include <string>
 #include "socketTool.h"
 #include <assert.h>
+#include "Last_fm.h"
 
 using namespace std;
 
 /**
  Get the metadata for an artist. Includes biography, truncated at 300 characters.
  */
-void artist_getInfo(string &artist);
+bool artist_getInfo(string &artist ,LFArtist &lfArtist);
 
 
 /**

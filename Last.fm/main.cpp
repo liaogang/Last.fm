@@ -23,15 +23,16 @@ int main(int argc, const char * argv[])
     
     
     
+    
+    string artist2 = "陈洁仪";
+    LFArtist lfArtist ;
+    if(artist_getInfo( artist2 ,lfArtist) )
+    {
+        cout<<lfArtist.name<<endl;
+    }
+    
+    
     /*
-    string artist2 = "Michael Jackson";
-    
-    cout<<utf8code(artist2)<<endl;
-    
-    artist_getInfo( artist2);
-    */
-    
-    
     LFUser user;
     if(auth(user) )
     {
@@ -47,7 +48,7 @@ int main(int argc, const char * argv[])
     }
     else
         cout<<"user: "<<user.name<<" loved a track failed!"<<endl;
-    
+    */
     
     
     return 0;

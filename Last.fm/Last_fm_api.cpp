@@ -6,7 +6,6 @@
 //  Copyright (c) 2015年 liaogang. All rights reserved.
 //
 
-#include "Last_fm.h"
 #include "Last_fm_api.h"
 #include <cstdio> //sprintf
 #include <cstring> // strcat
@@ -62,32 +61,35 @@ bool cmp(paramPair a,paramPair b)
 MemBuffer* lastFmSendRequest(vector<paramPair> arrParamPairs, httpMethod  method , bool mkMd5, bool acceptGzipEncoding , bool useJsonFormat );
 
 
-void artist_getInfo(string &artist)
+bool artist_getInfo(string &artist ,LFArtist &lfArtist)
 {
+    bool result = false;
+    
     const char fileNameGz[] = "gzip.resp";
     const char fileName[] = "text.resp";
     
     /////////////////////////////////////
     //parse it by json.
-    Json::Reader reader;
-    Json::Value root;
-    
-    std::ifstream istream ( fileName );
-    
-    reader.parse( istream, root);
-    
-    LFArtist lfArtist( root , true);
-    
-    return;
+//    Json::Reader reader;
+//    Json::Value root;
+//    
+//    std::ifstream istream ( fileName );
+//    
+//    reader.parse( istream, root);
+//    
+//    LFArtist lfArtist( root , true);
+//    
+//    return;
     /////////////////////////////////////////
 
     
     vector<paramPair> arrParamPair
     (
      {
-         {"method","artist.getInfo"},
          {"artist", artist},
-         {"autocorrect","1"}
+         {"autocorrect","1"},
+         {"lang",lastFmLang},
+         {"method","artist.getInfo"}
      }
      );
     
@@ -118,8 +120,6 @@ void artist_getInfo(string &artist)
         in.close();
         out.close();
         
-        
-        
         //parse it by json.
         Json::Reader reader;
         Json::Value root;
@@ -128,11 +128,14 @@ void artist_getInfo(string &artist)
         
         reader.parse( istream, root);
         
-        LFArtist lfArtist( root , true);
+        lfArtist = LFArtist( root , true);
+        
+        result = true;
         
         deleteMemBuffer(buffer);
     }
     
+    return result;
 }
 
 
