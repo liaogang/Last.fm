@@ -16,16 +16,6 @@
 
 using namespace std;
 
-
-
-
-
-
-
-
-
-
-
 const char lastFmPath[]="/2.0/";
 const char lastFmHost[] = "ws.audioscrobbler.com" ;
 const char lastFmApiKey[] = "6ef0a182fcb172b557c0ca096594f288";
@@ -53,8 +43,7 @@ const char *arrHttpMethod[] = {"POST","GET"};
 
 bool cmp(paramPair a,paramPair b)
 {
-    int ret = strcmp( a.param.c_str() ,b.param.c_str() ) < 0;
-    return ret;
+    return strcmp( a.param.c_str() ,b.param.c_str() ) < 0;
 }
 
 
@@ -68,21 +57,6 @@ bool artist_getInfo(string &artist ,LFArtist &lfArtist)
     const char fileNameGz[] = "gzip.resp";
     const char fileName[] = "text.resp";
     
-    /////////////////////////////////////
-    //parse it by json.
-//    Json::Reader reader;
-//    Json::Value root;
-//    
-//    std::ifstream istream ( fileName );
-//    
-//    reader.parse( istream, root);
-//    
-//    LFArtist lfArtist( root , true);
-//    
-//    return;
-    /////////////////////////////////////////
-
-    
     vector<paramPair> arrParamPair
     (
      {
@@ -93,7 +67,7 @@ bool artist_getInfo(string &artist ,LFArtist &lfArtist)
      }
      );
     
-    MemBuffer *buffer = lastFmSendRequest(arrParamPair ,httpMethod_get ,false,true  , true );
+    MemBuffer *buffer = lastFmSendRequest(arrParamPair ,httpMethod_get ,false, false  , true );
     
     if (buffer)
     {
@@ -165,7 +139,7 @@ void track_getInfo(string &artist , string & track)
         Json::Value root;
         reader.parse((const char*)buffer->buffer, (const char*)buffer->buffer+buffer->length , root);
         
-        LFTrack lfTrack(root);
+        LFTrack lfTrack(root["track"]);
         
         deleteMemBuffer(buffer);
     }
@@ -315,16 +289,6 @@ bool track_updateNowPlaying(string &sessionKey, string &artist,string &track)
     {
         printf("%s\n",buffer->buffer);
         
-        //parse it by json.
-//        Json::Reader reader;
-//        Json::Value root;
-//        reader.parse((const char*)buffer->buffer, (const char*)buffer->buffer+buffer->length , root);
-//        
-//        if(root["status"].asString() == "ok")
-//        {
-//            result = true;
-//        }
-        
         result = true;
         deleteMemBuffer(buffer);
     }
@@ -338,13 +302,11 @@ bool track_scrobble(string &sessionKey, vector<string> &artists,vector<string> &
 {
     bool result = false;
     
-    
     time_t t;
     time(&t);
     
     char tmp[40]={0};
     sprintf(tmp, "%ld",t);
-    
     
     vector<paramPair> arrParamPair
     ({
@@ -362,16 +324,54 @@ bool track_scrobble(string &sessionKey, vector<string> &artists,vector<string> &
     if (buffer)
     {
         printf("%s\n",buffer->buffer);
+       
+        Json::Reader reader;
+        Json::Value root;
+        reader.parse((const char*)buffer->buffer, (const char*)buffer->buffer+buffer->length , root);
         
-        //parse it by json.
-        //        Json::Reader reader;
-        //        Json::Value root;
-        //        reader.parse((const char*)buffer->buffer, (const char*)buffer->buffer+buffer->length , root);
-        //
-        //        if(root["status"].asString() == "ok")
-        //        {
-        //            result = true;
-        //        }
+        
+        result = true;
+        deleteMemBuffer(buffer);
+    }
+    
+    
+    return result;
+}
+
+
+bool user_getRecentTracks(const string &username , vector<LFTrack> &tracks)
+{
+    bool result = false;
+    
+    vector<paramPair> arrParamPair
+    ({
+        {"extended","1"},
+        {"limit","200"},
+        {"method","user.getRecentTracks"},
+        {"user", username}
+    });
+    
+    MemBuffer *buffer = lastFmSendRequest(arrParamPair ,httpMethod_get , false, false, true);
+    
+    if (buffer)
+    {
+        printf("%s\n",buffer->buffer);
+        
+        Json::Reader reader;
+        Json::Value root;
+        reader.parse((const char*)buffer->buffer, (const char*)buffer->buffer+buffer->length , root);
+        
+        Json::Value arr = root["recenttracks"]["track"];
+        
+        int arrLength = arr.size();
+        
+        for (int i= 0; i < arrLength; i++) {
+            Json::Value v = arr[i];
+            LFTrack t(v);
+            
+            tracks.push_back( t );
+        }
+        
         
         result = true;
         deleteMemBuffer(buffer);
@@ -427,7 +427,6 @@ MemBuffer* lastFmSendRequest(vector<paramPair> arrParamPairs, httpMethod  method
     if (mkMd5)
     {
         string strMD5;
-        //
         for( int i = 0; i< numParamPairs; i++)
         {
             paramPair pPP = arrParamPairs[i];
@@ -448,7 +447,6 @@ MemBuffer* lastFmSendRequest(vector<paramPair> arrParamPairs, httpMethod  method
     numParamPairs++;
     sort(arrParamPairs.begin(), arrParamPairs.end(), cmp);
     
-    
 
     for( int i = 0; i< numParamPairs; i++)
     {
@@ -461,7 +459,6 @@ MemBuffer* lastFmSendRequest(vector<paramPair> arrParamPairs, httpMethod  method
         strParams+='=';
         /// convert param value from utf8 to utf8 code (eaaf --> %ea%af)
         strParams+=utf8code( pPP.value );
-//        strParams+= pPP.value ;
     }
     
     
@@ -476,11 +473,11 @@ Accept-Language: zh-CN,en,*\r\n\
 Host: %s\r\n\
 \r\n";
     
-    const char acceptEncoding[] = "Accept-Encoding: gzip\r\n";
+    const char acceptEncoding[] = "Accept-Encoding: gzip,*\r\n";
     
     sprintf( (char*) senderHeader, senderHeaderFormatter ,arrHttpMethod[method]  , lastFmPath , strParams.c_str() , acceptGzipEncoding?acceptEncoding:"" ,  lastFmHost );
     
-    int senderHeaderLen = strlen((char*)senderHeader);
+    size_t senderHeaderLen = strlen((char*)senderHeader);
     
     printf("%s\n",senderHeader);
     
@@ -498,3 +495,5 @@ Host: %s\r\n\
     
     return nullptr;
 }
+
+

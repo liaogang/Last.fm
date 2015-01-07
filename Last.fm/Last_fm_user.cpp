@@ -28,7 +28,7 @@ FILE& operator>>(FILE& f,int& t)
 //write zero terminated str array
 FILE& operator<<(FILE& f,const TCHAR * str)
 {
-    int l=strlen(str)+1;
+    int l=(int)strlen(str)+1;
     f<<l;
     fwrite(str,sizeof(TCHAR),l,&f);
     return f;
@@ -45,7 +45,7 @@ FILE& operator>>(FILE& f,TCHAR * str)
 //tstring
 FILE& operator<<(FILE& f,const string &str)
 {
-    int l=str.length();
+    int l=(int)str.length();
     f<<l+1;
     fwrite(str.c_str(),sizeof(char),l,&f);
     char nullstr='\0';
@@ -60,6 +60,7 @@ FILE& operator>>(FILE& f,string &str)
     str=buf;
     return f;
 }
+
 /// load it from cached file if has, else create a new session again.
 bool auth(LFUser &user)
 {
@@ -124,3 +125,4 @@ bool auth(LFUser &user)
     
     return userProfileLoaded;
 }
+

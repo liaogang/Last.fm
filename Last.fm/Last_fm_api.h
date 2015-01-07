@@ -48,4 +48,10 @@ bool track_updateNowPlaying(string &sessionKey, string &artist,string &track);
 bool track_scrobble(string &sessionKey, vector<string> &artists,vector<string> &tracks,vector<string> timestamps);
 
 
+/**
+     Get a list of the recent tracks listened to by this user. Also includes the currently playing track with the nowplaying="true" attribute if the user is currently listening.
+ */
+bool user_getRecentTracks(const string &username , vector<LFTrack> &tracks);
+
+
 #endif /* defined(__Last_fm__Last_fm__) */

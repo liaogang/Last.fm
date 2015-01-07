@@ -16,27 +16,20 @@
 
 using namespace std;
 
-struct LFObject
-{
-    virtual string jsonID()=0;
-};
-
 
 /// biography 个人简历
-struct LFBio :public LFObject
+struct LFBio
 {
-    string jsonID(){return "bio";};
-    
     string links,published,summary;
     
     LFBio(){}
     
     LFBio(Json::Value &parent)
     {
-        Json::Value v = parent[jsonID()];
+        Json::Value v = parent["bio"];
         assert(v.type() == Json::objectValue);
         
-        links;
+        //links;
         
         published = v["published"].asString();
         
@@ -45,17 +38,15 @@ struct LFBio :public LFObject
     }
 };
 
-struct LFStats:public LFObject
+struct LFStats
 {
-    string jsonID(){return "stats";};
-    
     string listeners,playcount;
     
     LFStats(){}
     
     LFStats(Json::Value &parent)
     {
-        Json::Value jv = parent[jsonID()];
+        Json::Value jv = parent["stats"];
         
         assert(jv.type() == Json::objectValue);
         
@@ -68,10 +59,8 @@ struct LFStats:public LFObject
 
 
 
-struct LFTag:LFObject
+struct LFTag
 {
-    string jsonID() {return "error";};
-    
     string name;
     string url;
     LFTag()
@@ -90,10 +79,8 @@ struct LFTag:LFObject
 };
 
 
-struct LFTags:public LFObject
+struct LFTags
 {
-    string jsonID(){return "tags";};
-    
     vector<LFTag> tags;
     
     LFTags()
@@ -103,7 +90,7 @@ struct LFTags:public LFObject
     
     LFTags(Json::Value &parent)
     {
-        Json::Value jv = parent[jsonID()];
+        Json::Value jv = parent["tags"];
         
         //assert(jv.type() == Json::arrayValue);
         
@@ -120,45 +107,41 @@ struct LFTags:public LFObject
 };
 
 
-struct LFImage:public LFObject
+struct LFImage
 {
-    string jsonID(){return "image";};
-    
     string imageSmall,imageMedium,imageLarge,imageExtraLarge,imageMega;
     
     LFImage(){}
     LFImage(Json::Value &parent)
     {
-        Json::Value jvImage = parent[jsonID()];
+        Json::Value jvImage = parent["image"];
         
-        assert( jvImage.type() == Json::arrayValue );
-        
-        int length = jvImage.size();
-        for( int i =0; i < length; i++)
+        if(jvImage.type() == Json::arrayValue)
         {
-            string size = jvImage[i]["size"].asString();
-            string image = jvImage[i]["#text"].asString();
-            
-            if( size == "small")
-                imageSmall = image;
-            else if( size == "medium")
-                imageMedium = image;
-            else if( size == "large")
-                imageLarge = image;
-            else if( size == "extralarge")
-                imageExtraLarge = image;
-            else if( size == "mega")
-                imageMega = image;
+            int length = jvImage.size();
+            for( int i =0; i < length; i++)
+            {
+                string size = jvImage[i]["size"].asString();
+                string image = jvImage[i]["#text"].asString();
+                
+                if( size == "small")
+                    imageSmall = image;
+                else if( size == "medium")
+                    imageMedium = image;
+                else if( size == "large")
+                    imageLarge = image;
+                else if( size == "extralarge")
+                    imageExtraLarge = image;
+                else if( size == "mega")
+                    imageMega = image;
+            }
         }
-        
     }
 };
 
 
-struct LFArtistBasic : public LFObject
+struct LFArtistBasic
 {
-    string jsonID(){return "artist";};
-    
     string name,mbid,url;
     LFImage image;
     
@@ -195,8 +178,7 @@ struct LFSimilarArtist
 
 struct LFArtist:public LFArtistBasic
 {
-    string jsonID(){return "artist";};
-    
+    string text,mbid;
     
     LFStats stats;
     LFSimilarArtist similarArtist;
@@ -207,23 +189,29 @@ struct LFArtist:public LFArtistBasic
     LFArtist(Json::Value &parent, bool complete);
 };
 
-
-struct LFTrack:public LFObject
+struct LFAlbum
 {
-    string jsonID(){return "track";};
-    
+    string text,mbid;
+    LFAlbum(){}
+    LFAlbum(Json::Value &v)
+    {
+        text = v["#text"].asString();
+        mbid = v["mbid"].asString();
+    }
+};
+
+struct LFTrack
+{
     string id,name,mbid,url,duration,streamable,listeners,playcount;
+    string loved;
     LFArtist artist;
     string toptags;
+    
+    LFImage image;
     
     LFTrack();
     LFTrack(Json::Value &jvTrack);
 };
-
-
-
-
-
 
 
 

@@ -36,14 +36,16 @@ int main(int argc, const char * argv[])
     LFUser user;
     if(auth(user) )
     {
-        cout<<" is connected to : "<<user.name << " , sessionKey:"<<user.sessionKey<<endl;
+        cout<<" is connected to : "<<user.name << " , sessionKey:"<<user.sessionKey<<endl<<endl;
     }
     else
         cout<<"not connected."<<endl;
     
+    
+    /*
     vector<string> artists ({artist});
-        vector<string> tracks ({track});
-        vector<string> times ({"2015:01:08:02"});
+    vector<string> tracks ({track});
+    vector<string> times ({"2015:01:08:02"});
     
     time_t t;
     time(&t);
@@ -52,6 +54,28 @@ int main(int argc, const char * argv[])
         cout<<"ok"<<endl;
     else
         cout<<"error"<<endl;
+    */
+ 
+    
+    vector<LFTrack> tracks;
+    if(user_getRecentTracks(user.name , tracks) )
+    {
+        cout<<"ok"<<endl;
+        
+        for (int i = 0; i < tracks.size() ; i++) {
+            LFTrack track = tracks[i];
+            
+            cout<<"track:"<<track.name<<" , artist:"<<track.artist.name<<track.artist.text<<endl;
+            
+        }
+        
+        
+    }
+    else
+        cout<<"error"<<endl;
+    
+    
+    
     
     /*
     if(track_updateNowPlaying(user.sessionKey, artist, track) )
@@ -70,6 +94,12 @@ int main(int argc, const char * argv[])
     else
         cout<<"user: "<<user.name<<" loved a track failed!"<<endl;
     */
+    
+    
+    
+    
+    
+    
     
     
     return 0;

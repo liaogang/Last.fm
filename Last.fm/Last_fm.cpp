@@ -18,13 +18,14 @@ using namespace std;
 
 
 LFArtist::LFArtist(){}
-LFArtist::LFArtist(Json::Value &parent, bool complete):LFArtistBasic(parent[jsonID()])
+LFArtist::LFArtist(Json::Value &parent, bool complete):LFArtistBasic(parent["artist"])
 {
-    Json::Value jvArtist = parent[jsonID()];
+    Json::Value jvArtist = parent["artist"];
     
     assert(jvArtist.type() == Json::objectValue );
     
-
+    text = jvArtist["#text"].asString();
+    mbid = jvArtist["mbid"].asString();
     
     if (complete)
     {
@@ -44,7 +45,7 @@ LFTrack::LFTrack(){}
 
 LFTrack::LFTrack(Json::Value &parent)
 {
-    Json::Value dicTrack = parent[jsonID()];
+    Json::Value dicTrack = parent;
     
     id = dicTrack["id"].asString();
     name = dicTrack["name"].asString();
@@ -56,6 +57,8 @@ LFTrack::LFTrack(Json::Value &parent)
     playcount = dicTrack["playcount"].asString();
     artist = LFArtist(dicTrack,false) ;
     toptags = dicTrack["toptags"].asString();
+    loved = dicTrack["loved"].asString();
+    image = LFImage(dicTrack);
 };
 
 
