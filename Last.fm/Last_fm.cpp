@@ -56,7 +56,7 @@ LFTrack::LFTrack(Json::Value &parent)
     listeners = dicTrack["listeners"].asString();
     playcount = dicTrack["playcount"].asString();
     artist = LFArtist(dicTrack,false) ;
-    toptags = dicTrack["toptags"].asString();
+    //toptags = dicTrack["toptags"].asString();
     loved = dicTrack["loved"].asString();
     image = LFImage(dicTrack);
 };

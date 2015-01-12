@@ -54,9 +54,6 @@ bool artist_getInfo(string &artist ,LFArtist &lfArtist)
 {
     bool result = false;
     
-    const char fileNameGz[] = "gzip.resp";
-    const char fileName[] = "text.resp";
-    
     vector<paramPair> arrParamPair
     (
      {
@@ -71,36 +68,10 @@ bool artist_getInfo(string &artist ,LFArtist &lfArtist)
     
     if (buffer)
     {
-
-        
-        FILE *file = fopen( fileNameGz, "w");
-        if(file)
-        {
-            fwrite(buffer->buffer, sizeof(char), buffer->length, file);
-            fclose(file);
-        }
-        
-        
-        igzstream in( fileNameGz );
-        if ( ! in.good()) {
-        }
-        std::ofstream  out( fileName);
-        if ( ! out.good()) {
-
-        }
-        char c;
-        while ( in.get(c))
-            out << c;
-        in.close();
-        out.close();
-        
-        //parse it by json.
         Json::Reader reader;
         Json::Value root;
         
-        std::ifstream istream ( fileName );
-        
-        reader.parse( istream, root);
+        reader.parse((const char*)buffer->buffer, (const char*)buffer->buffer+buffer->length , root);
         
         lfArtist = LFArtist( root , true);
         
@@ -114,7 +85,7 @@ bool artist_getInfo(string &artist ,LFArtist &lfArtist)
 
 
 
-void track_getInfo(string &artist , string & track)
+bool track_getInfo(string &artist , string & track, LFTrack &lfTrack)
 {
     vector<paramPair> arrParamPair
     (
@@ -139,10 +110,14 @@ void track_getInfo(string &artist , string & track)
         Json::Value root;
         reader.parse((const char*)buffer->buffer, (const char*)buffer->buffer+buffer->length , root);
         
-        LFTrack lfTrack(root["track"]);
+        lfTrack = LFTrack(root["track"]);
         
         deleteMemBuffer(buffer);
+        
+        return true;
     }
+    
+    return false;
 }
 
 

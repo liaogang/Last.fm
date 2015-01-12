@@ -64,7 +64,7 @@ FILE& operator>>(FILE& f,string &str)
 /// load it from cached file if has, else create a new session again.
 bool auth(LFUser &user)
 {
-    const char userProfile[] = "userProfile.data";
+    const char userProfile[] = "lastFm.cfg";
     
     bool userProfileLoaded = false;
     

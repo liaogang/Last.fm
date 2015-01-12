@@ -13,24 +13,44 @@
 
 #include <time.h>
 
+
+
 int main(int argc, const char * argv[])
 {
-    string artist = "Michael Jackson";
-    string track = "Earth Song";
+    /*
+    if(curlUrlFile("http://userserve-ak.last.fm/serve/252/30501527.png", "18583905.jpg")>0)
+    {
+        cout<<"ok"<<endl;
+    }
+     */
+     if(curlUrlFile("http://userserve-ak.last.fm/serve/_/3095298/Goodbye++Hello.jpg", "Goodbye++Hello.jpg")>0)
+    {
+        cout<<"ok"<<endl;
+    }
+     
+    return 0;
     
-    //track_getInfo( artist, track );
     
-    
-    
+    string artist = "蔡健雅";
+    string track = "Beautiful love";
     
     /*
+    LFTrack lfTrack;
+    if(track_getInfo( artist, track ,lfTrack))
+    {
+        cout<<"ok"<<endl;
+    }
+    return 0;
+    */
+    
+    
     string artist2 = "陈洁仪";
     LFArtist lfArtist ;
-    if(artist_getInfo( artist2 ,lfArtist) )
+    if(artist_getInfo( artist ,lfArtist) )
     {
         cout<<lfArtist.name<<endl;
     }
-    */
+    return 0;
     
     
     LFUser user;
@@ -42,7 +62,7 @@ int main(int argc, const char * argv[])
         cout<<"not connected."<<endl;
     
     
-    /*
+    
     vector<string> artists ({artist});
     vector<string> tracks ({track});
     vector<string> times ({"2015:01:08:02"});
@@ -54,9 +74,9 @@ int main(int argc, const char * argv[])
         cout<<"ok"<<endl;
     else
         cout<<"error"<<endl;
-    */
- 
     
+ 
+    /*
     vector<LFTrack> tracks;
     if(user_getRecentTracks(user.name , tracks) )
     {
@@ -65,16 +85,12 @@ int main(int argc, const char * argv[])
         for (int i = 0; i < tracks.size() ; i++) {
             LFTrack track = tracks[i];
             
-            cout<<"track:"<<track.name<<" , artist:"<<track.artist.name<<track.artist.text<<endl;
-            
+            cout<<"track: "<<track.name<<" , artist: "<<track.artist.name<<track.artist.text<<endl;
         }
-        
-        
     }
     else
         cout<<"error"<<endl;
-    
-    
+    */
     
     
     /*
@@ -85,7 +101,6 @@ int main(int argc, const char * argv[])
     */
     
     
-    
     /*
     if( track_love( user.sessionKey, artist, track) )
     {
@@ -94,13 +109,6 @@ int main(int argc, const char * argv[])
     else
         cout<<"user: "<<user.name<<" loved a track failed!"<<endl;
     */
-    
-    
-    
-    
-    
-    
-    
     
     return 0;
 }
