@@ -126,3 +126,117 @@ bool auth(LFUser &user)
     return userProfileLoaded;
 }
 
+
+
+
+
+
+FILE& operator<<(FILE& f,const time_t &t)
+{
+    fwrite(&t, sizeof(time_t), 1, &f);
+    return f;
+}
+
+FILE& operator>>(FILE& f,time_t& t)
+{
+    fread(&t, sizeof(time_t), 1, &f);
+    return f;
+}
+
+template <class T>
+FILE& operator<<(FILE& f,const vector<T> &t)
+{
+    int length = (int)t.size();
+    f<<length;
+    for (int i = 0; i< length; i++)
+    {
+        f<<t[i];
+    }
+    return f;
+}
+
+template <class T>
+FILE& operator>>(FILE& f,vector<T> &t)
+{
+    int length ;
+    f>>length;
+    
+    for (int i = 0; i< length; i++)
+    {
+        T tt;
+        f>>tt;
+        t.push_back(tt);
+    }
+    
+    return f;
+}
+
+/// LFTrackRecord
+
+FILE& operator<<(FILE& f,const LFTrackRecord &t)
+{
+    return f<<t.artist<<t.track<<t.time;
+}
+
+FILE& operator>>(FILE& f,LFTrackRecord& t)
+{
+    return f>>t.artist>>t.track>>t.time;
+}
+
+/// LFTrackRecords
+
+FILE& operator<<(FILE& f,const LFTrackRecords &t)
+{
+    return f<<t.records;
+}
+
+FILE& operator>>(FILE& f,LFTrackRecords& t)
+{
+    return f>>t.records;
+}
+
+
+
+
+
+
+const char localRecord[] = "localRecord.cfg";
+static  LFTrackRecords records;
+static bool recordsDirty = false;
+LFTrackRecords& loadTrackRecords()
+{
+    FILE *file = fopen(localRecord, "r");
+    if (file)
+    {
+        (*file)>>records;
+        fclose(file);
+    }
+    
+    return records;
+}
+
+void addScrobbleLocal(string &artist,string &track)
+{
+    time_t t;
+    time(&t);
+    
+    records.records.push_back(LFTrackRecord(artist,track,t));
+    
+    recordsDirty = true;
+}
+
+void saveTrackRecords()
+{
+    if (recordsDirty)
+    {
+        FILE *file = fopen(localRecord, "w");
+        if (file)
+        {
+            (*file)<<records;
+            fclose(file);
+        }
+    }
+    
+}
+
+
