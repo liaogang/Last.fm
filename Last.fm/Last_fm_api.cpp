@@ -11,7 +11,6 @@
 #include <cstring> // strcat
 #include <assert.h>
 #include <iostream>
-#include "gzstream.h"
 #include "md5.h"
 
 using namespace std;
@@ -47,7 +46,7 @@ bool cmp(paramPair a,paramPair b)
 }
 
 
-MemBuffer* lastFmSendRequest(vector<paramPair> arrParamPairs, httpMethod  method , bool mkMd5, bool acceptGzipEncoding , bool useJsonFormat );
+MemBuffer* lastFmSendRequest(vector<paramPair> arrParamPairs, httpMethod  method , bool mkMd5, bool useJsonFormat );
 
 
 bool artist_getInfo(string &artist ,LFArtist &lfArtist)
@@ -64,7 +63,7 @@ bool artist_getInfo(string &artist ,LFArtist &lfArtist)
      }
      );
     
-    MemBuffer *buffer = lastFmSendRequest(arrParamPair ,httpMethod_get ,false, false  , true );
+    MemBuffer *buffer = lastFmSendRequest(arrParamPair ,httpMethod_get ,false,  true );
     
     if (buffer)
     {
@@ -99,7 +98,7 @@ bool track_getInfo(string &artist , string & track, LFTrack &lfTrack)
      );
     
    
-    MemBuffer *buffer = lastFmSendRequest(arrParamPair , httpMethod_get ,false, false , true);
+    MemBuffer *buffer = lastFmSendRequest(arrParamPair , httpMethod_get ,false,  true);
     
     if (buffer)
     {
@@ -131,7 +130,7 @@ bool auth_getToken( string &token )
      );
  
    
-    MemBuffer *buffer = lastFmSendRequest( arrParamPair ,httpMethod_get ,true,false, true);
+    MemBuffer *buffer = lastFmSendRequest( arrParamPair ,httpMethod_get ,true, true);
     
     if (buffer)
     {
@@ -179,7 +178,7 @@ bool auth_getSession(string &token,string &sessionKey,string &userName)
     /// this api has a bug , if using json format.
     /// @see http://cn.last.fm/group/Last.fm+Web+Services/forum/21604/_/428269
     
-    MemBuffer *buffer = lastFmSendRequest(arrParamPair ,httpMethod_get , true , false , false);
+    MemBuffer *buffer = lastFmSendRequest(arrParamPair ,httpMethod_get , true ,  false);
     
     if (buffer)
     {
@@ -220,7 +219,7 @@ bool track_love(string &sessionKey, string &artist , string & track )
      }
      );
     
-    MemBuffer *buffer = lastFmSendRequest(arrParamPair ,httpMethod_post ,true , false , true);
+    MemBuffer *buffer = lastFmSendRequest(arrParamPair ,httpMethod_post ,true ,  true);
     
     if (buffer)
     {
@@ -258,7 +257,7 @@ bool track_updateNowPlaying(string &sessionKey, string &artist,string &track)
      }
      );
     
-    MemBuffer *buffer = lastFmSendRequest(arrParamPair ,httpMethod_post ,true , false , true);
+    MemBuffer *buffer = lastFmSendRequest(arrParamPair ,httpMethod_post ,true ,  true);
     
     if (buffer)
     {
@@ -294,7 +293,7 @@ bool track_scrobble(string &sessionKey, vector<string> &artists,vector<string> &
 
     
     
-    MemBuffer *buffer = lastFmSendRequest(arrParamPair ,httpMethod_post ,true , false , true);
+    MemBuffer *buffer = lastFmSendRequest(arrParamPair ,httpMethod_post ,true ,  true);
     
     if (buffer)
     {
@@ -326,7 +325,7 @@ bool user_getRecentTracks(const string &username , vector<LFTrack> &tracks)
         {"user", username}
     });
     
-    MemBuffer *buffer = lastFmSendRequest(arrParamPair ,httpMethod_get , false, false, true);
+    MemBuffer *buffer = lastFmSendRequest(arrParamPair ,httpMethod_get , false,  true);
     
     if (buffer)
     {
@@ -386,7 +385,7 @@ string utf8code(string &str)
 
 /** return server's response content if have. else nullptr is returned.
  */
-MemBuffer* lastFmSendRequest(vector<paramPair> arrParamPairs, httpMethod  method , bool mkMd5, bool acceptGzipEncoding , bool useJsonFormat )
+MemBuffer* lastFmSendRequest(vector<paramPair> arrParamPairs, httpMethod  method , bool mkMd5, bool useJsonFormat )
 {
     size_t numParamPairs = arrParamPairs.size();
     
@@ -443,14 +442,12 @@ MemBuffer* lastFmSendRequest(vector<paramPair> arrParamPairs, httpMethod  method
 const char senderHeaderFormatter[] =
 "%s %s?%s HTTP/1.1\r\n\
 Connection: Keep-Alive\r\n\
-%s\
 Accept-Language: zh-CN,en,*\r\n\
 Host: %s\r\n\
 \r\n";
     
-    const char acceptEncoding[] = "Accept-Encoding: gzip,*\r\n";
     
-    sprintf( (char*) senderHeader, senderHeaderFormatter ,arrHttpMethod[method]  , lastFmPath , strParams.c_str() , acceptGzipEncoding?acceptEncoding:"" ,  lastFmHost );
+    sprintf( (char*) senderHeader, senderHeaderFormatter ,arrHttpMethod[method]  , lastFmPath , strParams.c_str() , lastFmHost );
     
     size_t senderHeaderLen = strlen((char*)senderHeader);
     
