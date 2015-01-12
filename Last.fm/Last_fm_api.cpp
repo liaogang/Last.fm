@@ -13,6 +13,12 @@
 #include <iostream>
 #include "md5.h"
 
+#ifdefine _WINDOWS
+#include "time.h"
+#include <algorithm>
+#endif
+
+
 using namespace std;
 
 const char lastFmPath[]="/2.0/";

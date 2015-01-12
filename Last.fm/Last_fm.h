@@ -17,24 +17,16 @@
 using namespace std;
 
 
-/// biography 个人简历
 struct LFBio
 {
     string links,published,summary;
-    
     LFBio(){}
-    
     LFBio(Json::Value &parent)
     {
         Json::Value v = parent["bio"];
         assert(v.type() == Json::objectValue);
-        
-        //links;
-        
         published = v["published"].asString();
-        
         summary = v["summary"].asString();
-        
     }
 };
 

@@ -8,7 +8,9 @@
 
 #include "Last_fm_user.h"
 #include "Last_fm_api.h"
-
+#ifdefine _WINDOWS
+#include "serializeBase.h"
+#else
 typedef char TCHAR;
 
 //int
@@ -60,6 +62,9 @@ FILE& operator>>(FILE& f,string &str)
     str=buf;
     return f;
 }
+
+#endif
+
 
 /// load it from cached file if has, else create a new session again.
 bool auth(LFUser &user)
@@ -115,8 +120,12 @@ bool auth(LFUser &user)
                 {
                     printf("please press auth in the web broswer after login in or wait a minute\n\n");
                 }
-                
+#ifdef _WINDOWS
+		::Sleep(100000);
+#else
                 sleep(10);
+#endif // _WINDOWS
+
             }
         }
     }
