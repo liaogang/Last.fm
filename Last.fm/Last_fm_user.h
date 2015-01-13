@@ -25,31 +25,7 @@ public:
     bool isConnected;
 };
 
-struct LFTrackRecord
-{
-public:
-    string artist;
-    string track;
-    time_t time;
-public:
-    bool updatedLastFm;
-    LFTrackRecord()
-    {
-        
-    }
-    
-    LFTrackRecord(string &a,string &t,time_t tm):artist(a),track(t),time(tm)
-    {
-        
-    }
-};
 
-struct LFTrackRecords
-{
-public:
-    vector<LFTrackRecord> records;
-    
-};
 
 
 
@@ -58,9 +34,7 @@ bool auth(LFUser &user);
 
 
 
-LFTrackRecords& loadTrackRecords();
-void addScrobbleLocal(string &artist,string &track);
-void saveTrackRecords();
+
 
 #endif
 

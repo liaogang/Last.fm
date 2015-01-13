@@ -271,40 +271,24 @@ bool track_updateNowPlaying(string &sessionKey, string &artist,string &track)
     return result;
 }
 
-
-bool track_scrobble(string &sessionKey, vector<string> &artists,vector<string> &tracks,vector<string> timestamps)
+bool track_scrobble(vector<paramPair> &arrParamPair)
 {
     bool result = false;
-    
-    time_t t;
-    time(&t);
-    
-    char tmp[40]={0};
-    sprintf(tmp, "%ld",t);
-    
-    vector<paramPair> arrParamPair
-    ({
-         {"artist", artists[0]},
-         {"method","track.scrobble"},
-         {"sk", sessionKey},
-         {"timestamp", tmp },
-         {"track", tracks[0] }
-     });
-
-    
-    
     MemBuffer *buffer = lastFmSendRequest(arrParamPair ,httpMethod_post ,true ,  true);
     
     if (buffer)
     {
         printf("%s\n",buffer->buffer);
-       
+        
         Json::Reader reader;
         Json::Value root;
         reader.parse((const char*)buffer->buffer, (const char*)buffer->buffer+buffer->length , root);
         
+        root = root["scrobbles"];
         
-        result = true;
+        if (root != Json::nullValue)
+            result = true;
+        
         deleteMemBuffer(buffer);
     }
     
@@ -312,6 +296,98 @@ bool track_scrobble(string &sessionKey, vector<string> &artists,vector<string> &
     return result;
 }
 
+bool track_scrobble(string &sessionKey, LFTrackRecords &records)
+{
+    size_t size = records.records.size();
+    
+    if(size==0)
+    {
+        return 1;
+    }
+    else if (size==1)
+    {
+        track_scrobble(sessionKey,records.records[0].artist,records.records[0].track,records.records[0].time);
+    }
+    else if(size>50)
+    {
+        size = 50;
+    }
+    
+    vector<paramPair> arrParamPair
+    ({
+        {"method","track.scrobble"},
+        {"sk", sessionKey},
+    });
+    
+    for (size_t i = 0; i < size; i++)
+    {
+        LFTrackRecord record= records.records[i];
+        
+        string paramArtist="artist[";
+        string paramTrack="track[";
+        string paramTimestamp="timestamp[";
+        
+        char num[2]={0};
+        sprintf(num, "%d" , (int)i);
+        
+        paramArtist+=num;
+        paramTrack+=num;
+        paramTimestamp+=num;
+        
+        
+        paramArtist+="]";
+        paramTrack+="]";
+        paramTimestamp+="]";
+        
+        arrParamPair.push_back({paramArtist,record.artist});
+        arrParamPair.push_back({paramTrack,record.track});
+        char tmp[20]={0};
+        sprintf(tmp, "%ld",record.time);
+        arrParamPair.push_back({paramTimestamp,string(tmp)});
+    }
+    
+    if(size>50)
+    {
+        auto beg = records.records.begin();
+        auto end = records.records.end();
+        records.records=vector<LFTrackRecord>(beg+50,end);
+    }
+
+    return track_scrobble(arrParamPair);
+}
+
+bool track_scrobble(string &sessionKey, string &artist,string &track,time_t timestamp)
+{
+    time_t t;
+    time(&t);
+    char tmp[20]={0};
+    sprintf(tmp, "%ld",t);
+    
+    string strTime=tmp;
+    return track_scrobble(sessionKey, artist, track, strTime);
+}
+
+bool track_scrobble(string &sessionKey, string &artist,string &track,string &timestamp)
+{
+    vector<paramPair> arrParamPair
+    ({
+        {"artist", artist},
+        {"method","track.scrobble"},
+        {"sk", sessionKey},
+        {"timestamp", timestamp},
+        {"track", track },
+    });
+    
+    return track_scrobble(arrParamPair);
+}
+
+bool track_scrobble(string &sessionKey, string &artist,string &track)
+{
+    time_t t;
+    time(&t);
+
+    return track_scrobble(sessionKey,artist,track,t);
+}
 
 bool user_getRecentTracks(const string &username , vector<LFTrack> &tracks)
 {

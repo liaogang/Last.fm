@@ -16,6 +16,8 @@
 		1E5E2F5D1A5934D600C60692 /* json_value.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1E5E2F591A5934D600C60692 /* json_value.cpp */; };
 		1E5E2F5E1A5934D600C60692 /* json_writer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1E5E2F5B1A5934D600C60692 /* json_writer.cpp */; };
 		1EC775221A5B951100E5BD3F /* Last_fm_user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1EC775201A5B951100E5BD3F /* Last_fm_user.cpp */; };
+		1EDF3B4E1A63EF8F0099B130 /* Last_fm_local_record.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1EDF3B4C1A63EF8F0099B130 /* Last_fm_local_record.cpp */; };
+		1EDF3B511A63F0010099B130 /* serialize.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1EDF3B4F1A63F0010099B130 /* serialize.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -50,6 +52,10 @@
 		1E5E2F5B1A5934D600C60692 /* json_writer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json_writer.cpp; sourceTree = "<group>"; };
 		1EC775201A5B951100E5BD3F /* Last_fm_user.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Last_fm_user.cpp; sourceTree = "<group>"; };
 		1EC775211A5B951100E5BD3F /* Last_fm_user.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Last_fm_user.h; sourceTree = "<group>"; };
+		1EDF3B4C1A63EF8F0099B130 /* Last_fm_local_record.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Last_fm_local_record.cpp; sourceTree = "<group>"; };
+		1EDF3B4D1A63EF8F0099B130 /* Last_fm_local_record.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Last_fm_local_record.h; sourceTree = "<group>"; };
+		1EDF3B4F1A63F0010099B130 /* serialize.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = serialize.cpp; sourceTree = "<group>"; };
+		1EDF3B501A63F0010099B130 /* serialize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = serialize.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +97,10 @@
 				1EC775201A5B951100E5BD3F /* Last_fm_user.cpp */,
 				1E188B441A5AA0CF004AC3FB /* Last_fm_api.h */,
 				1E188B431A5AA0CF004AC3FB /* Last_fm_api.cpp */,
+				1EDF3B4D1A63EF8F0099B130 /* Last_fm_local_record.h */,
+				1EDF3B4C1A63EF8F0099B130 /* Last_fm_local_record.cpp */,
+				1EDF3B501A63F0010099B130 /* serialize.h */,
+				1EDF3B4F1A63F0010099B130 /* serialize.cpp */,
 				1E188B3D1A5AA060004AC3FB /* md5.cpp */,
 				1E188B3E1A5AA060004AC3FB /* md5.h */,
 			);
@@ -181,8 +191,10 @@
 				1E5E2F531A5933A200C60692 /* Last_fm.cpp in Sources */,
 				1E188B3F1A5AA060004AC3FB /* md5.cpp in Sources */,
 				1E5E2F4D1A5931CC00C60692 /* socketTool.cpp in Sources */,
+				1EDF3B511A63F0010099B130 /* serialize.cpp in Sources */,
 				1EC775221A5B951100E5BD3F /* Last_fm_user.cpp in Sources */,
 				1E5E2F2E1A592AC500C60692 /* main.cpp in Sources */,
+				1EDF3B4E1A63EF8F0099B130 /* Last_fm_local_record.cpp in Sources */,
 				1E5E2F5E1A5934D600C60692 /* json_writer.cpp in Sources */,
 				1E188B451A5AA0CF004AC3FB /* Last_fm_api.cpp in Sources */,
 			);

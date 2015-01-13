@@ -12,26 +12,73 @@
 
 #include <time.h>
 
+#include "Last_fm_local_record.h"
+
+void testLocalRecord()
+{
+    LFTrackRecords records = loadTrackRecords();
+    
+
+    
+    
+    
+ 
+    
+    
+    string artist = "蔡健雅";
+    string track = "Beautiful love";
+    
+    addScrobbleLocal(artist, track);
+    addScrobbleLocal(artist, track);
+    addScrobbleLocal(artist, track);
+    addScrobbleLocal(artist, track);
+    
+    string artist2 = "Michael Jackson";
+    string track2 = "Earth Song";
+    
+    addScrobbleLocal(artist2, track2);
+    addScrobbleLocal(artist2, track2);
+    addScrobbleLocal(artist2, track2);
+    addScrobbleLocal(artist2, track2);
+    
+    saveTrackRecords();
+    
+}
+
+
+
 
 
 int main(int argc, const char * argv[])
 {
+   /*
+    testLocalRecord();
+    return 0;
+    */
+    
     /*
     if(curlUrlFile("http://userserve-ak.last.fm/serve/252/30501527.png", "18583905.jpg")>0)
     {
         cout<<"ok"<<endl;
     }
      */
+    
+    
+    /*
      if(curlUrlFile("http://userserve-ak.last.fm/serve/_/3095298/Goodbye++Hello.jpg", "Goodbye++Hello.jpg")>0)
     {
         cout<<"ok"<<endl;
     }
      
     return 0;
+    */
     
     
     string artist = "蔡健雅";
     string track = "Beautiful love";
+    
+    string artist2 = "Michael Jackson";
+    string track2 = "Earth Song";
     
     /*
     LFTrack lfTrack;
@@ -42,7 +89,7 @@ int main(int argc, const char * argv[])
     return 0;
     */
     
-    
+    /*
     string artist2 = "陈洁仪";
     LFArtist lfArtist ;
     if(artist_getInfo( artist ,lfArtist) )
@@ -50,7 +97,7 @@ int main(int argc, const char * argv[])
         cout<<lfArtist.name<<endl;
     }
     return 0;
-    
+    */
     
     LFUser user;
     if(auth(user) )
@@ -62,12 +109,10 @@ int main(int argc, const char * argv[])
     
     
     
-    vector<string> artists ({artist});
-    vector<string> tracks ({track});
-    vector<string> times ({"2015:01:08:02"});
+    vector<string> artists ({artist,artist2});
+    vector<string> tracks ({track,track2});
+    vector<string> times ({""});
     
-    time_t t;
-    time(&t);
     
     if (track_scrobble(user.sessionKey, artists , tracks , times))
         cout<<"ok"<<endl;
@@ -75,6 +120,9 @@ int main(int argc, const char * argv[])
         cout<<"error"<<endl;
     
  
+    
+    
+    
     /*
     vector<LFTrack> tracks;
     if(user_getRecentTracks(user.name , tracks) )

@@ -6,14 +6,16 @@
 //  Copyright (c) 2015年 liaogang. All rights reserved.
 //
 
-#ifndef __Last_fm__Last_fm__
-#define __Last_fm__Last_fm__
+#ifndef __Last_fm__api__
+#define __Last_fm__api__
 
 #include <stdio.h>
 #include <string>
 #include "socketTool.h"
 #include <assert.h>
 #include "Last_fm.h"
+
+#include "Last_fm_local_record.h"
 
 using namespace std;
 
@@ -37,8 +39,13 @@ bool track_love(string &sessionKey, string &artist , string & track );
 bool track_updateNowPlaying(string &sessionKey, string &artist,string &track);
 
 
-bool track_scrobble(string &sessionKey, vector<string> &artists,vector<string> &tracks,vector<string> timestamps);
 
+
+
+bool track_scrobble(string &sessionKey, string &artist,string &track,string &timestamp);
+bool track_scrobble(string &sessionKey, string &artist,string &track,time_t timestamp);
+bool track_scrobble(string &sessionKey, string &artist,string &track);
+bool track_scrobble(string &sessionKey, LFTrackRecords &records);
 
 /**
      Get a list of the recent tracks listened to by this user. Also includes the currently playing track with the nowplaying="true" attribute if the user is currently listening.
