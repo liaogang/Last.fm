@@ -13,6 +13,7 @@
 const char localRecord[] = "localRecord.cfg";
 static  LFTrackRecords records;
 static bool recordsDirty = false;
+
 LFTrackRecords& loadTrackRecords()
 {
     FILE *file = fopen(localRecord, "r");
