@@ -9,7 +9,7 @@
 #include "Last_fm_user.h"
 #include "Last_fm_api.h"
 
-#ifdefine _WINDOWS
+#ifdef _WINDOWS
 #include "serializeBase.h"
 #else
 #include "serialize.h"

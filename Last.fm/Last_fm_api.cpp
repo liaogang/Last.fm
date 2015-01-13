@@ -13,7 +13,7 @@
 #include <iostream>
 #include "md5.h"
 
-#ifdefine _WINDOWS
+#ifdef _WINDOWS
 #include "time.h"
 #include <algorithm>
 #endif

@@ -108,7 +108,7 @@ int main(int argc, const char * argv[])
         cout<<"not connected."<<endl;
     
     
-    
+    /*
     vector<string> artists ({artist,artist2});
     vector<string> tracks ({track,track2});
     vector<string> times ({""});
@@ -118,7 +118,7 @@ int main(int argc, const char * argv[])
         cout<<"ok"<<endl;
     else
         cout<<"error"<<endl;
-    
+    */
  
     
     
