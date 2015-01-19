@@ -10,7 +10,7 @@
 #include "serialize.h"
 
 
-const char localRecord[] = "localRecord.cfg";
+const char localRecord[] = "localRecords.cfg";
 static  LFTrackRecords records;
 static bool recordsDirty = false;
 
