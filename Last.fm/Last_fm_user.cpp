@@ -19,15 +19,14 @@
 
 char userProfile[256] ="lastFmUser.cfg";
 
-void setUserProfilePath(string path)
+void setUserProfilePath(const char* path)
 {
-    strcpy( userProfile, path.c_str() );
+    strcpy( userProfile, path );
 }
 
 /// load it from cached file if has, else create a new session again.
-bool auth(LFUser &user)
+bool auth(LFUser &user , bool remote)
 {
-    
     bool userProfileLoaded = false;
     
     FILE *file = fopen(userProfile, "r");
@@ -46,7 +45,7 @@ bool auth(LFUser &user)
     }
     
     
-    if (userProfileLoaded == false)
+    if ( remote && userProfileLoaded == false)
     {
         string token;
         if(auth_getToken( token ) )
@@ -92,10 +91,21 @@ bool auth(LFUser &user)
     return userProfileLoaded;
 }
 
+void clearSession(LFUser &user)
+{
+    user.isConnected = FALSE;
+    FILE *file = fopen(userProfile, "w");
+    if (file)
+    {
+        fclose(file);
+    }
+    
+}
 
+LFUser lfUser;
 
-
-
-
-
+LFUser* lastFmUser()
+{
+    return &lfUser;
+}
 

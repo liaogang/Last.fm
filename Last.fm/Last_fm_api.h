@@ -19,6 +19,12 @@
 
 using namespace std;
 
+
+void setLastFmApiKey(const char *apikey);
+void setLastFmSecret(const char *secret);
+
+
+
 /**
  Get the metadata for an artist. Includes biography, truncated at 300 characters.
  */

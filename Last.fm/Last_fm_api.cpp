@@ -23,9 +23,21 @@ using namespace std;
 
 const char lastFmPath[]="/2.0/";
 const char lastFmHost[] = "ws.audioscrobbler.com" ;
-const char lastFmApiKey[] = "6ef0a182fcb172b557c0ca096594f288";
-const char lastFmSecret[] = "3b1a4e1e970ed3a30c28cd65bb88579c";
 const char lastFmLang[10] ="zh";
+
+const int klen = 32 + sizeof('\0');
+char lastFmApiKey[klen] = "6ef0a182fcb172b557c0ca096594f288";
+char lastFmSecret[klen] = "3b1a4e1e970ed3a30c28cd65bb88579c";
+
+void setLastFmApiKey(const char *apikey)
+{
+    strncpy(lastFmApiKey, apikey, 32);
+}
+
+void setLastFmSecret(const char *secret)
+{
+    strncpy(lastFmSecret, secret, 32);
+}
 
 /// a param and it's value.
 struct paramPair
