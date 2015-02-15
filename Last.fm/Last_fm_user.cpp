@@ -17,10 +17,16 @@
 
 
 
+char userProfile[256] ="lastFmUser.cfg";
+
+void setUserProfilePath(string path)
+{
+    strcpy( userProfile, path.c_str() );
+}
+
 /// load it from cached file if has, else create a new session again.
 bool auth(LFUser &user)
 {
-    const char userProfile[] ="lastFmUser.cfg";
     
     bool userProfileLoaded = false;
     

@@ -25,16 +25,8 @@ public:
     bool isConnected;
 };
 
-
-
-
-
+void setUserProfilePath(string path);
 
 bool auth(LFUser &user);
 
-
-
-
-
 #endif
-
