@@ -77,9 +77,9 @@ bool auth(LFUser &user , bool remote)
                     printf("please press auth in the web broswer after login in or wait a minute\n\n");
                 }
 #ifdef _WINDOWS
-		::Sleep(100000);
+		::Sleep(50000);
 #else
-                sleep(10);
+                sleep(5);
 #endif // _WINDOWS
 
             }
