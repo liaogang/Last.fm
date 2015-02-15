@@ -7,7 +7,7 @@
 //
 
 #include "Last_fm_local_record.h"
-#include "serialize.h"
+#include "Last_fm_serialize.h"
 
 
 const char localRecord[] = "localRecords.cfg";
