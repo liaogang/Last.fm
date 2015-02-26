@@ -1,5 +1,4 @@
 //
-//  Last.fm.user
 //  Last.fm
 //
 //  Created by liaogang on 15/1/4.
