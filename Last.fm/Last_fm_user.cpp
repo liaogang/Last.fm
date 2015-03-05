@@ -92,7 +92,7 @@ bool auth(LFUser &user , bool remote)
 
 void clearSession(LFUser &user)
 {
-    user.isConnected = FALSE;
+    user.isConnected = false;
     FILE *file = fopen(userProfile, "w");
     if (file)
     {
