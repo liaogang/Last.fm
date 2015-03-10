@@ -453,7 +453,7 @@ bool user_getRecentTracks(const string &username , vector<LFTrack> &tracks)
 
 string utf8code(string &str)
 {
-    unsigned char buffer2[125]={0};
+    unsigned char buffer2[256]={0};
     
     size_t length = str.length();
     int ii=0;
