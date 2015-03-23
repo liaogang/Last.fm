@@ -24,7 +24,7 @@ void setUserProfilePath(const char* path)
 }
 
 /// load it from cached file if has, else create a new session again.
-bool auth(LFUser &user , bool remote)
+bool auth(LFUser &user , bool remote , bool &stop)
 {
     bool userProfileLoaded = false;
     
@@ -51,7 +51,7 @@ bool auth(LFUser &user , bool remote)
         {
             openWebInstance(token);
             
-            while (true)
+            while ( !stop  )
             {
                 if(auth_getSession(token,user.sessionKey ,user.name))
                 {
@@ -88,6 +88,12 @@ bool auth(LFUser &user , bool remote)
     user.isConnected = userProfileLoaded;
     
     return userProfileLoaded;
+}
+
+bool authLocal(LFUser &user)
+{
+    bool stop = false;
+    return auth(user, false, stop);
 }
 
 void clearSession(LFUser &user)

@@ -25,7 +25,9 @@ public:
 
 void setUserProfilePath(const char* path);
 
-bool auth(LFUser &user, bool remote);
+bool authLocal(LFUser &user);
+
+bool auth(LFUser &user, bool remote , bool &stop);
 
 void clearSession(LFUser &user);
 
