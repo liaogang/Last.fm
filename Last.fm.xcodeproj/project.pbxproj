@@ -10,12 +10,12 @@
 		1E188B3F1A5AA060004AC3FB /* md5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1E188B3D1A5AA060004AC3FB /* md5.cpp */; };
 		1E188B451A5AA0CF004AC3FB /* Last_fm_api.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1E188B431A5AA0CF004AC3FB /* Last_fm_api.cpp */; };
 		1E5923E21A65186500F20C72 /* socketTool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1E5923E01A65186500F20C72 /* socketTool.cpp */; };
-		1E5E2F2E1A592AC500C60692 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1E5E2F2D1A592AC500C60692 /* main.cpp */; };
 		1E5E2F531A5933A200C60692 /* Last_fm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1E5E2F511A5932E900C60692 /* Last_fm.cpp */; };
 		1EC775221A5B951100E5BD3F /* Last_fm_user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1EC775201A5B951100E5BD3F /* Last_fm_user.cpp */; };
 		1ECEB7821A905EBA006E8C23 /* serialize.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1ECEB7801A905EBA006E8C23 /* serialize.cpp */; };
 		1EDF3B4E1A63EF8F0099B130 /* Last_fm_local_record.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1EDF3B4C1A63EF8F0099B130 /* Last_fm_local_record.cpp */; };
 		1EDF3B511A63F0010099B130 /* Last_fm_serialize.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1EDF3B4F1A63F0010099B130 /* Last_fm_serialize.cpp */; };
+		F50D01E0BCBD3575726587A9 /* libPods-Last.fm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 95E6446BAB328F7E68548EE1 /* libPods-Last.fm.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -35,10 +35,10 @@
 		1E188B3E1A5AA060004AC3FB /* md5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = md5.h; sourceTree = "<group>"; };
 		1E188B431A5AA0CF004AC3FB /* Last_fm_api.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Last_fm_api.cpp; sourceTree = "<group>"; };
 		1E188B441A5AA0CF004AC3FB /* Last_fm_api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Last_fm_api.h; sourceTree = "<group>"; };
+		1E532BC21BA12EAB009BCEC1 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		1E5923E01A65186500F20C72 /* socketTool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = socketTool.cpp; sourceTree = "<group>"; };
 		1E5923E11A65186500F20C72 /* socketTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = socketTool.h; sourceTree = "<group>"; };
 		1E5E2F2A1A592AC500C60692 /* Last.fm */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Last.fm; sourceTree = BUILT_PRODUCTS_DIR; };
-		1E5E2F2D1A592AC500C60692 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		1E5E2F511A5932E900C60692 /* Last_fm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Last_fm.cpp; sourceTree = "<group>"; };
 		1E5E2F521A5932E900C60692 /* Last_fm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Last_fm.h; sourceTree = "<group>"; };
 		1EC775201A5B951100E5BD3F /* Last_fm_user.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Last_fm_user.cpp; sourceTree = "<group>"; };
@@ -49,6 +49,9 @@
 		1EDF3B4D1A63EF8F0099B130 /* Last_fm_local_record.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Last_fm_local_record.h; sourceTree = "<group>"; };
 		1EDF3B4F1A63F0010099B130 /* Last_fm_serialize.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Last_fm_serialize.cpp; sourceTree = "<group>"; };
 		1EDF3B501A63F0010099B130 /* Last_fm_serialize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Last_fm_serialize.h; sourceTree = "<group>"; };
+		3F3BA28195786CD5DAEC23F8 /* Pods-Last.fm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Last.fm.release.xcconfig"; path = "Pods/Target Support Files/Pods-Last.fm/Pods-Last.fm.release.xcconfig"; sourceTree = "<group>"; };
+		95E6446BAB328F7E68548EE1 /* libPods-Last.fm.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Last.fm.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C987694725D5BA3D2CCA5BBB /* Pods-Last.fm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Last.fm.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Last.fm/Pods-Last.fm.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,12 +59,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F50D01E0BCBD3575726587A9 /* libPods-Last.fm.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1E532BC11BA12EAB009BCEC1 /* test */ = {
+			isa = PBXGroup;
+			children = (
+				1E532BC21BA12EAB009BCEC1 /* main.cpp */,
+			);
+			path = test;
+			sourceTree = "<group>";
+		};
 		1E5923DF1A65186500F20C72 /* socketTool */ = {
 			isa = PBXGroup;
 			children = (
@@ -74,10 +86,13 @@
 		1E5E2F211A592AC500C60692 = {
 			isa = PBXGroup;
 			children = (
+				1E532BC11BA12EAB009BCEC1 /* test */,
 				1ECEB77F1A905EBA006E8C23 /* serialize */,
 				1E5923DF1A65186500F20C72 /* socketTool */,
 				1E5E2F2C1A592AC500C60692 /* Last.fm */,
 				1E5E2F2B1A592AC500C60692 /* Products */,
+				D625DEBF568658D4B579688F /* Pods */,
+				CB2DDF6E65EE45D9E163FFB4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -92,7 +107,6 @@
 		1E5E2F2C1A592AC500C60692 /* Last.fm */ = {
 			isa = PBXGroup;
 			children = (
-				1E5E2F2D1A592AC500C60692 /* main.cpp */,
 				1E5E2F521A5932E900C60692 /* Last_fm.h */,
 				1E5E2F511A5932E900C60692 /* Last_fm.cpp */,
 				1EC775211A5B951100E5BD3F /* Last_fm_user.h */,
@@ -118,6 +132,23 @@
 			path = serialize;
 			sourceTree = "<group>";
 		};
+		CB2DDF6E65EE45D9E163FFB4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				95E6446BAB328F7E68548EE1 /* libPods-Last.fm.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D625DEBF568658D4B579688F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C987694725D5BA3D2CCA5BBB /* Pods-Last.fm.debug.xcconfig */,
+				3F3BA28195786CD5DAEC23F8 /* Pods-Last.fm.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -125,9 +156,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1E5E2F311A592AC500C60692 /* Build configuration list for PBXNativeTarget "Last.fm" */;
 			buildPhases = (
+				D5BA6004B536FAED8359C25A /* Check Pods Manifest.lock */,
 				1E5E2F261A592AC500C60692 /* Sources */,
 				1E5E2F271A592AC500C60692 /* Frameworks */,
 				1E5E2F281A592AC500C60692 /* CopyFiles */,
+				F08366793597F9D5F268A94D /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -169,6 +202,39 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		D5BA6004B536FAED8359C25A /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F08366793597F9D5F268A94D /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Last.fm/Pods-Last.fm-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		1E5E2F261A592AC500C60692 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -179,7 +245,6 @@
 				1EDF3B511A63F0010099B130 /* Last_fm_serialize.cpp in Sources */,
 				1E5923E21A65186500F20C72 /* socketTool.cpp in Sources */,
 				1EC775221A5B951100E5BD3F /* Last_fm_user.cpp in Sources */,
-				1E5E2F2E1A592AC500C60692 /* main.cpp in Sources */,
 				1EDF3B4E1A63EF8F0099B130 /* Last_fm_local_record.cpp in Sources */,
 				1ECEB7821A905EBA006E8C23 /* serialize.cpp in Sources */,
 				1E188B451A5AA0CF004AC3FB /* Last_fm_api.cpp in Sources */,
@@ -265,6 +330,7 @@
 		};
 		1E5E2F321A592AC500C60692 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C987694725D5BA3D2CCA5BBB /* Pods-Last.fm.debug.xcconfig */;
 			buildSettings = {
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -279,6 +345,7 @@
 		};
 		1E5E2F331A592AC500C60692 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3F3BA28195786CD5DAEC23F8 /* Pods-Last.fm.release.xcconfig */;
 			buildSettings = {
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
