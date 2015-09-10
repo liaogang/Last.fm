@@ -9,10 +9,9 @@
 /* Begin PBXBuildFile section */
 		1E188B3F1A5AA060004AC3FB /* md5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1E188B3D1A5AA060004AC3FB /* md5.cpp */; };
 		1E188B451A5AA0CF004AC3FB /* Last_fm_api.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1E188B431A5AA0CF004AC3FB /* Last_fm_api.cpp */; };
-		1E5923E21A65186500F20C72 /* socketTool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1E5923E01A65186500F20C72 /* socketTool.cpp */; };
+		1E532BC31BA14318009BCEC1 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1E532BC21BA12EAB009BCEC1 /* main.cpp */; };
 		1E5E2F531A5933A200C60692 /* Last_fm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1E5E2F511A5932E900C60692 /* Last_fm.cpp */; };
 		1EC775221A5B951100E5BD3F /* Last_fm_user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1EC775201A5B951100E5BD3F /* Last_fm_user.cpp */; };
-		1ECEB7821A905EBA006E8C23 /* serialize.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1ECEB7801A905EBA006E8C23 /* serialize.cpp */; };
 		1EDF3B4E1A63EF8F0099B130 /* Last_fm_local_record.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1EDF3B4C1A63EF8F0099B130 /* Last_fm_local_record.cpp */; };
 		1EDF3B511A63F0010099B130 /* Last_fm_serialize.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1EDF3B4F1A63F0010099B130 /* Last_fm_serialize.cpp */; };
 		F50D01E0BCBD3575726587A9 /* libPods-Last.fm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 95E6446BAB328F7E68548EE1 /* libPods-Last.fm.a */; };
@@ -36,15 +35,11 @@
 		1E188B431A5AA0CF004AC3FB /* Last_fm_api.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Last_fm_api.cpp; sourceTree = "<group>"; };
 		1E188B441A5AA0CF004AC3FB /* Last_fm_api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Last_fm_api.h; sourceTree = "<group>"; };
 		1E532BC21BA12EAB009BCEC1 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		1E5923E01A65186500F20C72 /* socketTool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = socketTool.cpp; sourceTree = "<group>"; };
-		1E5923E11A65186500F20C72 /* socketTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = socketTool.h; sourceTree = "<group>"; };
 		1E5E2F2A1A592AC500C60692 /* Last.fm */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Last.fm; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E5E2F511A5932E900C60692 /* Last_fm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Last_fm.cpp; sourceTree = "<group>"; };
 		1E5E2F521A5932E900C60692 /* Last_fm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Last_fm.h; sourceTree = "<group>"; };
 		1EC775201A5B951100E5BD3F /* Last_fm_user.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Last_fm_user.cpp; sourceTree = "<group>"; };
 		1EC775211A5B951100E5BD3F /* Last_fm_user.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Last_fm_user.h; sourceTree = "<group>"; };
-		1ECEB7801A905EBA006E8C23 /* serialize.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = serialize.cpp; sourceTree = "<group>"; };
-		1ECEB7811A905EBA006E8C23 /* serialize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = serialize.h; sourceTree = "<group>"; };
 		1EDF3B4C1A63EF8F0099B130 /* Last_fm_local_record.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Last_fm_local_record.cpp; sourceTree = "<group>"; };
 		1EDF3B4D1A63EF8F0099B130 /* Last_fm_local_record.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Last_fm_local_record.h; sourceTree = "<group>"; };
 		1EDF3B4F1A63F0010099B130 /* Last_fm_serialize.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Last_fm_serialize.cpp; sourceTree = "<group>"; };
@@ -74,21 +69,10 @@
 			path = test;
 			sourceTree = "<group>";
 		};
-		1E5923DF1A65186500F20C72 /* socketTool */ = {
-			isa = PBXGroup;
-			children = (
-				1E5923E01A65186500F20C72 /* socketTool.cpp */,
-				1E5923E11A65186500F20C72 /* socketTool.h */,
-			);
-			path = socketTool;
-			sourceTree = "<group>";
-		};
 		1E5E2F211A592AC500C60692 = {
 			isa = PBXGroup;
 			children = (
 				1E532BC11BA12EAB009BCEC1 /* test */,
-				1ECEB77F1A905EBA006E8C23 /* serialize */,
-				1E5923DF1A65186500F20C72 /* socketTool */,
 				1E5E2F2C1A592AC500C60692 /* Last.fm */,
 				1E5E2F2B1A592AC500C60692 /* Products */,
 				D625DEBF568658D4B579688F /* Pods */,
@@ -121,15 +105,6 @@
 				1E188B3E1A5AA060004AC3FB /* md5.h */,
 			);
 			path = Last.fm;
-			sourceTree = "<group>";
-		};
-		1ECEB77F1A905EBA006E8C23 /* serialize */ = {
-			isa = PBXGroup;
-			children = (
-				1ECEB7811A905EBA006E8C23 /* serialize.h */,
-				1ECEB7801A905EBA006E8C23 /* serialize.cpp */,
-			);
-			path = serialize;
 			sourceTree = "<group>";
 		};
 		CB2DDF6E65EE45D9E163FFB4 /* Frameworks */ = {
@@ -240,13 +215,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E532BC31BA14318009BCEC1 /* main.cpp in Sources */,
 				1E5E2F531A5933A200C60692 /* Last_fm.cpp in Sources */,
 				1E188B3F1A5AA060004AC3FB /* md5.cpp in Sources */,
 				1EDF3B511A63F0010099B130 /* Last_fm_serialize.cpp in Sources */,
-				1E5923E21A65186500F20C72 /* socketTool.cpp in Sources */,
 				1EC775221A5B951100E5BD3F /* Last_fm_user.cpp in Sources */,
 				1EDF3B4E1A63EF8F0099B130 /* Last_fm_local_record.cpp in Sources */,
-				1ECEB7821A905EBA006E8C23 /* serialize.cpp in Sources */,
 				1E188B451A5AA0CF004AC3FB /* Last_fm_api.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -338,7 +312,10 @@
 					/usr/local/include,
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				OTHER_LDFLAGS = "-ljson";
+				OTHER_LDFLAGS = (
+					"-ljson",
+					"$(inherited)",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -353,7 +330,10 @@
 					/usr/local/include,
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				OTHER_LDFLAGS = "-ljson";
+				OTHER_LDFLAGS = (
+					"-ljson",
+					"$(inherited)",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

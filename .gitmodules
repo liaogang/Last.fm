@@ -1,6 +1,0 @@
-[submodule "socketTool"]
-	path = socketTool
-	url = /Users/liaogang/快盘/git/socketTool.git
-[submodule "serialize"]
-	path = serialize
-	url = /Users/liaogang/快盘/git/serialize.git
