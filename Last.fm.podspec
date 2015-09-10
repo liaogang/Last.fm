@@ -17,15 +17,11 @@ Pod::Spec.new do |s|
 
   s.name         = "Last.fm"
   s.version      = "0.0.1"
-  s.summary      = "A short description of Last.fm."
+  s.summary      = "c/c++ last.fm api used in windows uplayer and osx smine player."
 
   s.description  = <<-DESC
-                   A longer description of Last.fm in Markdown format.
+				   A simple c/c++ last.fm api used in windows uplayer and osx smine player.
 
-                   * Think: Why did you write this? What is the focus? What does it do?
-                   * CocoaPods will be using this to generate tags, and improve search results.
-                   * Try to keep it short, snappy and to the point.
-                   * Finally, don't worry about the indent, CocoaPods strips it!
                    DESC
 
   s.homepage     = "https://github.com/liaogang/Last.fm.git"
@@ -39,8 +35,7 @@ Pod::Spec.new do |s|
   #  Popular ones are 'MIT', 'BSD' and 'Apache License, Version 2.0'.
   #
 
-  s.license      = "MIT (example)"
-  # s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
+  s.license      = "by-nc-sa"
 
 
   # ――― Author Metadata  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -64,12 +59,12 @@ Pod::Spec.new do |s|
   #  the deployment target. You can optionally include the target after the platform.
   #
 
-  # s.platform     = :ios
+   s.platform     = :osx
   # s.platform     = :ios, "5.0"
 
   #  When using multiple platforms
   # s.ios.deployment_target = "5.0"
-  # s.osx.deployment_target = "10.7"
+   s.osx.deployment_target = "10.7"
 
 
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -131,6 +126,6 @@ Pod::Spec.new do |s|
   # s.requires_arc = true
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
-  # s.dependency "JSONKit", "~> 1.4"
+  s.dependency "socketTool","serialize"
 
 end
