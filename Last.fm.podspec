@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "Last.fm"
-  s.version      = "0.0.1"
+  s.version      = "0.0.2"
   s.summary      = "c/c++ last.fm api used in windows uplayer and osx smine player."
 
   s.description  = <<-DESC
@@ -73,7 +73,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/liaogang/Last.fm.git", :tag => 'v0.0.1' }
+  s.source       = { :git => "https://github.com/liaogang/Last.fm.git", :tag => 'v0.0.2' }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
