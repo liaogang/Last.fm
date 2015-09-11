@@ -100,7 +100,7 @@ int main(int argc, const char * argv[])
     */
     
     LFUser user;
-    if(auth(user) )
+    if(authLocal(user) )
     {
         cout<<" is connected to : "<<user.name << " , sessionKey:"<<user.sessionKey<<endl<<endl;
     }
