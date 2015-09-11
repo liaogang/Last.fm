@@ -4,5 +4,6 @@
 target 'Last.fm' do
 pod 'socketTool'
 pod 'serialize'
+pod 'jsoncpp', '~> 0.6.0.rc2'
 end
 

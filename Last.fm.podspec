@@ -127,5 +127,7 @@ Pod::Spec.new do |s|
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   s.dependency   "serialize","~> 0.0.2"
+  s.dependency "jsoncpp","=> 0.5.0"
+  s.dependency "socketTool","=> 0.0.6"
   #s.dependencys =  "socketTool","serialize"
 end
