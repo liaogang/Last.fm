@@ -1,5 +1,4 @@
 //
-//  Last.fm.user
 //  Last.fm
 //
 //  Created by liaogang on 15/1/4.
@@ -19,15 +18,14 @@
 
 char userProfile[256] ="lastFmUser.cfg";
 
-void setUserProfilePath(string path)
+void setUserProfilePath(const char* path)
 {
-    strcpy( userProfile, path.c_str() );
+    strcpy( userProfile, path );
 }
 
 /// load it from cached file if has, else create a new session again.
-bool auth(LFUser &user)
+bool auth(LFUser &user , bool remote , bool &stop)
 {
-    
     bool userProfileLoaded = false;
     
     FILE *file = fopen(userProfile, "r");
@@ -46,14 +44,14 @@ bool auth(LFUser &user)
     }
     
     
-    if (userProfileLoaded == false)
+    if ( remote && userProfileLoaded == false)
     {
         string token;
         if(auth_getToken( token ) )
         {
             openWebInstance(token);
             
-            while (true)
+            while ( !stop  )
             {
                 if(auth_getSession(token,user.sessionKey ,user.name))
                 {
@@ -75,12 +73,14 @@ bool auth(LFUser &user)
                 }
                 else
                 {
+#ifdef DEBUG
                     printf("please press auth in the web broswer after login in or wait a minute\n\n");
+#endif
                 }
 #ifdef _WINDOWS
-		::Sleep(100000);
+		::Sleep(50000);
 #else
-                sleep(10);
+                sleep(5);
 #endif // _WINDOWS
 
             }
@@ -92,10 +92,27 @@ bool auth(LFUser &user)
     return userProfileLoaded;
 }
 
+bool authLocal(LFUser &user)
+{
+    bool stop = false;
+    return auth(user, false, stop);
+}
 
+void clearSession(LFUser &user)
+{
+    user.isConnected = false;
+    FILE *file = fopen(userProfile, "w");
+    if (file)
+    {
+        fclose(file);
+    }
+    
+}
 
+LFUser lfUser;
 
-
-
-
+LFUser* lastFmUser()
+{
+    return &lfUser;
+}
 

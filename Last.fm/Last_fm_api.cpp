@@ -1,5 +1,4 @@
 //
-//  Last.fm.user
 //  Last.fm
 //
 //  Created by liaogang on 15/1/4.
@@ -23,9 +22,21 @@ using namespace std;
 
 const char lastFmPath[]="/2.0/";
 const char lastFmHost[] = "ws.audioscrobbler.com" ;
-const char lastFmApiKey[] = "6ef0a182fcb172b557c0ca096594f288";
-const char lastFmSecret[] = "3b1a4e1e970ed3a30c28cd65bb88579c";
 const char lastFmLang[10] ="zh";
+
+const int klen = 32 + sizeof('\0');
+char lastFmApiKey[klen] = "6ef0a182fcb172b557c0ca096594f288";
+char lastFmSecret[klen] = "3b1a4e1e970ed3a30c28cd65bb88579c";
+
+void setLastFmApiKey(const char *apikey)
+{
+    strncpy(lastFmApiKey, apikey, 32);
+}
+
+void setLastFmSecret(const char *secret)
+{
+    strncpy(lastFmSecret, secret, 32);
+}
 
 /// a param and it's value.
 struct paramPair
@@ -108,7 +119,9 @@ bool track_getInfo(string &artist , string & track, LFTrack &lfTrack)
     
     if (buffer)
     {
+#ifdef DEBUG
         printf("%s\n",buffer->buffer);
+#endif
         
         //parse it by json.
         Json::Reader reader;
@@ -140,7 +153,9 @@ bool auth_getToken( string &token )
     
     if (buffer)
     {
+#ifdef DEBUG
         printf("%s\n",buffer->buffer);
+#endif
         
         //parse it by json.
         Json::Reader reader;
@@ -188,7 +203,9 @@ bool auth_getSession(string &token,string &sessionKey,string &userName)
     
     if (buffer)
     {
+#ifdef DEBUG
         printf("%s\n",buffer->buffer);
+#endif
         
         //parse it by json.
         Json::Reader reader;
@@ -229,7 +246,9 @@ bool track_love(string &sessionKey, string &artist , string & track )
     
     if (buffer)
     {
+#ifdef DEBUG
         printf("%s\n",buffer->buffer);
+#endif
         
         //parse it by json.
         Json::Reader reader;
@@ -267,7 +286,9 @@ bool track_updateNowPlaying(string &sessionKey, string &artist,string &track)
     
     if (buffer)
     {
+#ifdef DEBUG
         printf("%s\n",buffer->buffer);
+#endif
         
         result = true;
         deleteMemBuffer(buffer);
@@ -284,7 +305,9 @@ bool track_scrobble(vector<paramPair> &arrParamPair)
     
     if (buffer)
     {
+#ifdef DEBUG
         printf("%s\n",buffer->buffer);
+#endif
         
         Json::Reader reader;
         Json::Value root;
@@ -411,7 +434,9 @@ bool user_getRecentTracks(const string &username , vector<LFTrack> &tracks)
     
     if (buffer)
     {
+#ifdef DEBUG
         printf("%s\n",buffer->buffer);
+#endif
         
         Json::Reader reader;
         Json::Value root;
@@ -442,7 +467,7 @@ bool user_getRecentTracks(const string &username , vector<LFTrack> &tracks)
 
 string utf8code(string &str)
 {
-    unsigned char buffer2[125]={0};
+    unsigned char buffer2[256]={0};
     
     size_t length = str.length();
     int ii=0;
@@ -533,7 +558,9 @@ Host: %s\r\n\
     
     size_t senderHeaderLen = strlen((char*)senderHeader);
     
+#ifdef DEBUG
     printf("%s\n",senderHeader);
+#endif
     
     int socketClient;
     if(CreateTcpSocketClient(lastFmHost  , &socketClient) )

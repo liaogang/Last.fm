@@ -1,5 +1,4 @@
 //
-//  Last.fm.h
 //  Last.fm
 //
 //  Created by liaogang on 15/1/4.
@@ -18,6 +17,12 @@
 #include "Last_fm_local_record.h"
 
 using namespace std;
+
+
+void setLastFmApiKey(const char *apikey);
+void setLastFmSecret(const char *secret);
+
+
 
 /**
  Get the metadata for an artist. Includes biography, truncated at 300 characters.
