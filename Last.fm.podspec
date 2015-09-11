@@ -73,7 +73,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/liaogang/Last.fm.git" }
+  s.source       = { :git => "https://github.com/liaogang/Last.fm.git", :tag = "v0.01" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -126,6 +126,6 @@ Pod::Spec.new do |s|
   # s.requires_arc = true
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
-  s.dependency "socketTool","serialize"
+  s.dependency =  "socketTool","serialize"
 
 end
