@@ -255,10 +255,13 @@ bool track_love(string &sessionKey, string &artist , string & track )
         Json::Value root;
         reader.parse((const char*)buffer->buffer, (const char*)buffer->buffer+buffer->length , root);
         
-        if(root["status"].asString() == "ok")
+        
+        // check error now
+        if (root["error"].isNull())
         {
             result = true;
         }
+        
         
         deleteMemBuffer(buffer);
     }

@@ -148,14 +148,14 @@ int main(int argc, const char * argv[])
     */
     
     
-    /*
+    
     if( track_love( user.sessionKey, artist, track) )
     {
         cout<<"user: "<<user.name<<" loved a track."<<endl;
     }
     else
         cout<<"user: "<<user.name<<" loved a track failed!"<<endl;
-    */
+    
     
     return 0;
 }

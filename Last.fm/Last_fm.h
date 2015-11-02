@@ -9,22 +9,7 @@
 #define __Last_fm__Last_fm___
 
 #include <string>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #include <json/json.h>
-
 #include "socketTool.h"
 #include <assert.h>
 
